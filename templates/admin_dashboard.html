@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10243a">
+<title>Admin Dashboard | Modern Tech Electrical Solutions</title>
+
+<style>
+:root {
+    --navy:#10243a;
+    --blue:#1769aa;
+    --green:#159767;
+    --gold:#f5b942;
+    --bg:#f3f6fa;
+    --white:#fff;
+    --text:#26384a;
+    --muted:#748296;
+    --border:#e5ebf2;
+    --red:#c93636;
+    --shadow:0 8px 25px rgba(16,36,58,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
+.topbar{
+    background:var(--navy);color:white;padding:17px 26px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:15px;flex-wrap:wrap
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:bold}
+.logo{
+    width:44px;height:44px;display:grid;place-items:center;
+    background:var(--gold);color:var(--navy);
+    border-radius:12px;font-weight:900;font-size:17px
+}
+.brand small{display:block;margin-top:5px;color:#b9ccda;font-weight:normal}
+.top-actions{display:flex;align-items:center;gap:12px}
+.admin-label{color:#d6e6ef;font-size:13px}
+.logout{
+    color:white;background:#ffffff15;border:1px solid #ffffff40;
+    border-radius:8px;padding:10px 14px
+}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:calc(100vh - 78px)}
+.sidebar{background:white;border-right:1px solid var(--border);padding:23px 14px}
+.side-title{color:#95a1af;font-size:10px;font-weight:bold;letter-spacing:1.5px;margin:10px 12px 15px}
+.nav-link{
+    display:flex;align-items:center;gap:12px;width:100%;padding:13px 12px;
+    border:none;border-radius:9px;background:transparent;color:#586a7e;
+    text-align:left;font-size:13px;margin-bottom:5px
+}
+.nav-link:hover,.nav-link.active{background:#eaf3fb;color:var(--blue);font-weight:bold}
+.main{min-width:0;padding:28px}
+.page-heading{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:15px;flex-wrap:wrap;margin-bottom:23px
+}
+.page-heading h1{margin:0 0 8px;color:var(--navy);font-size:27px}
+.page-heading p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.live-status{padding:10px 13px;background:#e2f7eb;color:#087647;border-radius:20px;font-size:11px;font-weight:bold}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:23px}
+.stat-card{background:white;border:1px solid var(--border);border-radius:14px;padding:19px;box-shadow:var(--shadow)}
+.stat-label{color:var(--muted);font-size:12px}
+.stat-number{font-size:30px;font-weight:800;color:var(--navy);margin:14px 0 7px}
+.stat-caption{font-size:11px;color:var(--muted)}
+.panel{background:white;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.panel-heading{
+    padding:20px;display:flex;justify-content:space-between;align-items:center;
+    gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--border)
+}
+.panel-heading h2{margin:0 0 6px;color:var(--navy);font-size:17px}
+.panel-heading p{margin:0;color:var(--muted);font-size:12px}
+.filters{display:flex;gap:9px;flex-wrap:wrap}
+.filters input,.filters select{
+    padding:10px 12px;border:1px solid var(--border);
+    border-radius:8px;outline:none;font-size:12px;background:white;max-width:100%
+}
+.filters input:focus,.filters select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769aa18}
+.refresh-btn{
+    padding:9px 12px;border:1px solid var(--border);border-radius:8px;
+    background:white;color:var(--blue)
+}
+.table-wrap{width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1100px}
+th{
+    background:#f8fafc;color:#738195;text-transform:uppercase;
+    letter-spacing:.4px;font-size:10px;text-align:left;padding:14px
+}
+td{border-top:1px solid #edf1f5;padding:15px 14px;font-size:12px;vertical-align:top}
+tbody tr:hover{background:#fbfdff}
+.customer-name,.service-name{font-weight:bold;color:var(--navy);margin-bottom:5px}
+.subtext{color:var(--muted);font-size:11px;margin-top:4px;overflow-wrap:anywhere}
+.description{max-width:230px;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap}
+.status{display:inline-block;padding:6px 9px;border-radius:20px;font-size:10px;font-weight:bold;white-space:nowrap}
+.status.pending{color:#946200;background:#fff3ce}
+.status.approved{color:#1769aa;background:#e6f2ff}
+.status.rejected{color:#a62929;background:#ffeded}
+.status.completed{color:#087647;background:#e1f7eb}
+.actions{display:flex;flex-wrap:wrap;gap:6px;min-width:155px}
+.btn{padding:8px 10px;border:none;border-radius:7px;font-size:11px;font-weight:bold}
+.approve{color:#087647;background:#e2f7eb}
+.reject{color:#b52d2d;background:#fff0f0}
+.complete{color:#1769aa;background:#e6f2ff}
+.view-btn{color:#334e62;background:#edf2f7}
+.empty{padding:35px 15px;text-align:center;color:var(--muted);font-size:13px}
+.table-footer{padding:14px 20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}
+.message{padding:14px 16px;border-radius:10px;margin-bottom:16px;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.message.error{color:#a32121;background:#fff0f0;border:1px solid #ffd1d1}
+.message.info{color:#285c82;background:#eaf5ff;border:1px solid #cce5fa}
+.message.success{color:#087647;background:#e2f7eb;border:1px solid #b9e5ce}
+.modal-backdrop{
+    position:fixed;inset:0;background:#071a2bcc;z-index:300;
+    display:none;align-items:center;justify-content:center;padding:18px
+}
+.modal-backdrop.open{display:flex}
+.modal{
+    width:min(650px,100%);max-height:90vh;overflow:auto;
+    background:white;border-radius:15px;padding:23px
+}
+.modal h2{margin-top:0;color:var(--navy)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.detail-item{padding:12px;background:#f6f8fb;border-radius:9px;overflow-wrap:anywhere}
+.detail-item strong{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+.detail-item span{font-size:13px;white-space:pre-wrap}
+.detail-full{grid-column:1/-1}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.close-modal{border:1px solid var(--border);background:white;border-radius:8px;padding:10px 14px}
+.note-input{width:100%;min-height:90px;padding:11px;border:1px solid var(--border);border-radius:8px;resize:vertical}
+@media(max-width:1100px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{display:flex;overflow-x:auto;padding:9px;border-right:none;border-bottom:1px solid var(--border);gap:4px}
+    .side-title{display:none}
+    .nav-link{width:auto;min-width:max-content;margin:0;padding:11px}
+    .main{padding:18px 11px}
+    .topbar{padding:14px}
+    .page-heading h1{font-size:23px}
+    .panel-heading{padding:15px}
+    .filters{width:100%}
+    .filters input{flex:1;min-width:150px}
+    .filters select{flex:1;min-width:130px}
+}
+@media(max-width:420px){
+    .stats{gap:8px}
+    .stat-card{padding:12px}
+    .stat-number{font-size:25px}
+    .admin-label{display:none}
+    .detail-grid{grid-template-columns:1fr}
+    .detail-full{grid-column:auto}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+    <div class="brand">
+        <div class="logo">MT</div>
+        <div>
+            Modern Tech Electrical Solutions
+            <small>Service Management Portal</small>
+        </div>
+    </div>
+
+    <div class="top-actions">
+        <span class="admin-label">Administrator</span>
+        <form method="POST" action="{{ url_for('admin_logout') }}">
+            <button class="logout" type="submit">Log out ↗</button>
+        </form>
+    </div>
+</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="side-title">SERVICE MANAGEMENT</div>
+        <button type="button" class="nav-link active" data-status="all">▦ &nbsp; All requests</button>
+        <button type="button" class="nav-link" data-status="Pending">◷ &nbsp; Pending services</button>
+        <button type="button" class="nav-link" data-status="Approved">✓ &nbsp; Approved services</button>
+        <button type="button" class="nav-link" data-status="Completed">✔ &nbsp; Completed services</button>
+        <button type="button" class="nav-link" data-status="Rejected">× &nbsp; Rejected requests</button>
+    </aside>
+
+    <main class="main">
+        <section class="page-heading">
+            <div>
+                <h1>Service Requests</h1>
+                <p>Review customer submissions, approve work and track service progress.</p>
+            </div>
+            <div class="live-status" id="connectionStatus">Connecting to server…</div>
+        </section>
+
+        <div id="pageMessage" role="status" aria-live="polite"></div>
+
+        <section class="stats">
+            <div class="stat-card">
+                <div class="stat-label">Total requests</div>
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-caption">All customer submissions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pending services</div>
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-caption">Waiting for your decision</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Approved jobs</div>
+                <div class="stat-number" id="approvedCount">0</div>
+                <div class="stat-caption">Approved for service delivery</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Completed jobs</div>
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-caption">Jobs marked completed</div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <h2 id="tableTitle">All Service Requests</h2>
+                    <p>Customer information is loaded from your Flask server.</p>
+                </div>
+
+                <div class="filters">
+                    <input id="searchInput" type="search" placeholder="Search customer or service…" aria-label="Search requests">
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="all">All statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                    <button type="button" class="refresh-btn" id="refreshBtn">↻ Refresh</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Customer</th>
+                            <th>Requested service</th>
+                            <th>Location</th>
+                            <th>Preferred date</th>
+                            <th>Date submitted</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestTable"></tbody>
+                </table>
+                <div id="emptyState" class="empty" hidden>No service requests found.</div>
+            </div>
+
+            <div class="table-footer" id="resultCount">Loading requests…</div>
+        </section>
+    </main>
+</div>
+
+<div class="modal-backdrop" id="detailsModal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+    <div class="modal">
+        <h2 id="detailsTitle">Service Request Details</h2>
+        <div id="detailsContent"></div>
+        <div class="modal-actions">
+            <button type="button" class="close-modal" id="closeDetails">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+"use strict";
+
+/*
+  These URLs must match the routes implemented in app.py.
+  This dashboard expects:
+  GET   /api/admin/service-requests
+  PATCH /api/admin/service-requests/<id>/status
+*/
+const API_URL = "/api/admin/service-requests";
+const UPDATE_URL = "/api/admin/service-requests";
+
+let requests = [];
+let currentStatus = "all";
+let isLoading = false;
+
+const $ = id => document.getElementById(id);
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
+}
+
+function normalizeStatus(value) {
+    const allowed = ["Pending", "Approved", "Rejected", "Completed"];
+    return allowed.find(
+        status => status.toLowerCase() === String(value || "").toLowerCase()
+    ) || "Pending";
+}
+
+function getId(item) {
+    return item.id ?? item.request_id ?? item.service_id ?? "";
+}
+
+function getCustomer(item) {
+    return item.customer_name ?? item.name ?? item.full_name ?? "Customer";
+}
+
+function getPhone(item) {
+    return item.phone ?? item.phone_number ?? "";
+}
+
+function getEmail(item) {
+    return item.email ?? item.email_address ?? "";
+}
+
+function getService(item) {
+    return item.service_name ?? item.service_type ?? item.service ?? "Service request";
+}
+
+function getDescription(item) {
+    return item.description ?? item.details ?? item.message ?? "";
+}
+
+function getLocation(item) {
+    return item.location ?? item.address ?? item.residential_area ?? "—";
+}
+
+function getPreferredDate(item) {
+    return item.preferred_date ?? item.service_date ?? "";
+}
+
+function formatDate(value, includeTime = false) {
+    if (!value) return "—";
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return String(value);
+
+    const options = includeTime
+        ? { dateStyle: "medium", timeStyle: "short" }
+        : { dateStyle: "medium" };
+
+    return parsed.toLocaleString(undefined, options);
+}
+
+function getSubmittedDate(item) {
+    return formatDate(
+        item.created_at ?? item.date_submitted ?? item.request_date,
+        true
+    );
+}
+
+function showMessage(message, type = "info") {
+    $("pageMessage").innerHTML =
+        `<div class="message ${type}">${escapeHTML(message)}</div>`;
+}
+
+function clearMessage() {
+    $("pageMessage").innerHTML = "";
+}
+
+function setConnection(connected, text) {
+    const element = $("connectionStatus");
+    element.textContent = text;
+    element.style.background = connected ? "#e2f7eb" : "#fff0f0";
+    element.style.color = connected ? "#087647" : "#a32121";
+}
+
+function statusBadge(status) {
+    const safeStatus = normalizeStatus(status);
+    return `<span class="status ${safeStatus.toLowerCase()}">${safeStatus}</span>`;
+}
+
+function renderDashboard() {
+    const query = $("searchInput").value.trim().toLowerCase();
+    const selected = $("statusFilter").value;
+
+    $("totalCount").textContent = requests.length;
+    $("pendingCount").textContent =
+        requests.filter(item => normalizeStatus(item.status) === "Pending").length;
+    $("approvedCount").textContent =
+        requests.filter(item => normalizeStatus(item.status) === "Approved").length;
+    $("completedCount").textContent =
+        requests.filter(item => normalizeStatus(item.status) === "Completed").length;
+
+    const filtered = requests.filter(item => {
+        const status = normalizeStatus(item.status);
+        const matchesSidebar = currentStatus === "all" || status === currentStatus;
+        const matchesSelect = selected === "all" || status === selected;
+
+        const searchable = [
+            getId(item),
+            getCustomer(item),
+            getPhone(item),
+            getEmail(item),
+            getService(item),
+            getDescription(item),
+            getLocation(item),
+            getPreferredDate(item),
+            status
+        ].join(" ").toLowerCase();
+
+        return matchesSidebar && matchesSelect && searchable.includes(query);
+    });
+
+    $("requestTable").innerHTML = filtered.map(item => {
+        const id = getId(item);
+        const status = normalizeStatus(item.status);
+
+        let actions = `
+            <div class="actions">
+                <button type="button" class="btn view-btn" data-view-id="${escapeHTML(id)}">View details</button>
+            </div>`;
+
+        if (status === "Pending") {
+            actions = `
+                <div class="actions">
+                    <button type="button" class="btn approve"
+                        data-id="${escapeHTML(id)}" data-new-status="Approved">Approve</button>
+                    <button type="button" class="btn reject"
+                        data-id="${escapeHTML(id)}" data-new-status="Rejected">Reject</button>
+                    <button type="button" class="btn view-btn"
+                        data-view-id="${escapeHTML(id)}">View details</button>
+                </div>`;
+        } else if (status === "Approved") {
+            actions = `
+                <div class="actions">
+                    <button type="button" class="btn complete"
+                        data-id="${escapeHTML(id)}" data-new-status="Completed">Mark completed</button>
+                    <button type="button" class="btn reject"
+                        data-id="${escapeHTML(id)}" data-new-status="Rejected">Reject</button>
+                    <button type="button" class="btn view-btn"
+                        data-view-id="${escapeHTML(id)}">View details</button>
+                </div>`;
+        }
+
+        return `
+            <tr>
+                <td><strong>${escapeHTML(id || "—")}</strong></td>
+                <td>
+                    <div class="customer-name">${escapeHTML(getCustomer(item))}</div>
+                    <div class="subtext">${escapeHTML(getPhone(item))}</div>
+                    <div class="subtext">${escapeHTML(getEmail(item))}</div>
+                </td>
+                <td>
+                    <div class="service-name">${escapeHTML(getService(item))}</div>
+                    <div class="description">${escapeHTML(getDescription(item))}</div>
+                </td>
+                <td>${escapeHTML(getLocation(item))}</td>
+                <td>${escapeHTML(formatDate(getPreferredDate(item)))}</td>
+                <td>${escapeHTML(getSubmittedDate(item))}</td>
+                <td>${statusBadge(status)}</td>
+                <td>${actions}</td>
+            </tr>`;
+    }).join("");
+
+    $("emptyState").hidden = filtered.length > 0;
+    $("resultCount").textContent =
+        `Showing ${filtered.length} of ${requests.length} service requests`;
+
+    const titleMap = {
+        all: "All Service Requests",
+        Pending: "Pending Service Requests",
+        Approved: "Approved Service Requests",
+        Rejected: "Rejected Service Requests",
+        Completed: "Completed Service Requests"
+    };
+    $("tableTitle").textContent = titleMap[currentStatus] || titleMap.all;
+}
+
+async function loadRequests(showErrors = true) {
+    if (isLoading) return;
+
+    isLoading = true;
+    $("refreshBtn").disabled = true;
+    setConnection(false, "Refreshing…");
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "GET",
+            headers: { "Accept": "application/json" },
+            credentials: "same-origin",
+            cache: "no-store"
+        });
+
+        if (response.status === 401 || response.status === 403) {
+            throw new Error("Administrator login is required. Please sign in again.");
+        }
+
+        if (!response.ok) {
+            throw new Error(`The server returned HTTP ${response.status}.`);
+        }
+
+        const result = await response.json();
+
+        // Accept common API response formats.
+        const list = Array.isArray(result)
+            ? result
+            : result.requests ?? result.data?.requests ?? result.data;
+
+        if (!Array.isArray(list)) {
+            throw new Error(
+                "The API must return a JSON array or an object containing a requests array."
+            );
+        }
+
+        requests = list;
+        setConnection(true, "● Connected to server");
+        clearMessage();
+        renderDashboard();
+
+    } catch (error) {
+        console.error("Could not load service requests:", error);
+        setConnection(false, "● Connection problem");
+
+        if (showErrors) {
+            showMessage(
+                `${error.message} Check that the API URL in admin_dashboard.html matches a route in app.py.`,
+                "error"
+            );
+        }
+    } finally {
+        isLoading = false;
+        $("refreshBtn").disabled = false;
+    }
+}
+
+async function updateStatus(id, newStatus, button) {
+    if (!id) {
+        showMessage("This request has no ID. Check the database and API response.", "error");
+        return;
+    }
+
+    const allowed = ["Approved", "Rejected", "Completed"];
+    if (!allowed.includes(newStatus)) {
+        showMessage("Invalid status selected.", "error");
+        return;
+    }
+
+    if (!confirm(`Are you sure you want to change request ${id} to ${newStatus}?`)) {
+        return;
+    }
+
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = "Saving…";
+
+    try {
+        const response = await fetch(
+            `${UPDATE_URL}/${encodeURIComponent(id)}/status`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({ status: newStatus })
+            }
+        );
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || result.success === false) {
+            throw new Error(
+                result.error || result.message || `Could not update request (HTTP ${response.status}).`
+            );
+        }
+
+        showMessage(
+            result.message || `Request ${id} was updated to ${newStatus}.`,
+            "success"
+        );
+
+        await loadRequests(false);
+
+    } catch (error) {
+        console.error("Status update failed:", error);
+        showMessage(
+            `${error.message} Ensure app.py has a PATCH route that updates the database.`,
+            "error"
+        );
+        button.disabled = false;
+        button.textContent = originalText;
+    }
+}
+
+function showDetails(id) {
+    const item = requests.find(record => String(getId(record)) === String(id));
+
+    if (!item) {
+        showMessage("The selected request could not be found. Refresh the dashboard.", "error");
+        return;
+    }
+
+    const fields = [
+        ["Request reference", getId(item)],
+        ["Customer name", getCustomer(item)],
+        ["Phone number", getPhone(item) || "Not provided"],
+        ["Email address", getEmail(item) || "Not provided"],
+        ["Requested service", getService(item)],
+        ["Location", getLocation(item)],
+        ["Property / project type", item.property_type || "Not provided"],
+        ["Preferred date", formatDate(getPreferredDate(item))],
+        ["Date submitted", getSubmittedDate(item)],
+        ["Status", normalizeStatus(item.status)],
+        ["Customer description", getDescription(item) || "No description provided"],
+        ["Admin note", item.admin_note || "No admin note"]
+    ];
+
+    $("detailsContent").innerHTML =
+        `<div class="detail-grid">${
+            fields.map(([label, value], index) => `
+                <div class="detail-item ${index >= 10 ? "detail-full" : ""}">
+                    <strong>${escapeHTML(label)}</strong>
+                    <span>${escapeHTML(value)}</span>
+                </div>
+            `).join("")
+        }</div>`;
+
+    $("detailsModal").classList.add("open");
+}
+
+$("requestTable").addEventListener("click", event => {
+    const statusButton = event.target.closest("button[data-new-status]");
+    if (statusButton) {
+        updateStatus(
+            statusButton.dataset.id,
+            statusButton.dataset.newStatus,
+            statusButton
+        );
+        return;
+    }
+
+    const viewButton = event.target.closest("button[data-view-id]");
+    if (viewButton) {
+        showDetails(viewButton.dataset.viewId);
+    }
+});
+
+document.querySelectorAll(".nav-link").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".nav-link").forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        currentStatus = button.dataset.status;
+        $("statusFilter").value = "all";
+        renderDashboard();
+    });
+});
+
+$("searchInput").addEventListener("input", renderDashboard);
+$("statusFilter").addEventListener("change", renderDashboard);
+$("refreshBtn").addEventListener("click", () => loadRequests(true));
+$("closeDetails").addEventListener("click", () => {
+    $("detailsModal").classList.remove("open");
+});
+
+$("detailsModal").addEventListener("click", event => {
+    if (event.target === $("detailsModal")) {
+        $("detailsModal").classList.remove("open");
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        $("detailsModal").classList.remove("open");
+    }
+});
+
+// Initial load and automatic refresh.
+loadRequests();
+setInterval(() => loadRequests(false), 15000);
+</script>
+</body>
+</html>

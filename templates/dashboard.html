@@ -1,0 +1,1153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071d2b">
+<title>Dashboard | Modern Tech Electrical Solutions</title>
+
+<style>
+:root {
+    --green: #087f5b;
+    --blue: #0866c6;
+    --navy: #071d2b;
+    --background: #f2f6fa;
+    --white: #ffffff;
+    --text: #183448;
+    --muted: #708292;
+    --border: #e0e8ef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a { color: inherit; }
+
+header {
+    background: linear-gradient(110deg, #071d2b, #0b4852);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 25px #071d2b20;
+}
+
+.navbar {
+    max-width: 1450px;
+    min-height: 78px;
+    margin: auto;
+    padding: 12px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+    flex-shrink: 0;
+}
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #11b981, #1685df);
+    font-size: 25px;
+}
+
+.brand h2 { font-size: 15px; line-height: 1.3; }
+
+.brand small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #a9d7d9;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav a, .drop-button {
+    text-decoration: none;
+    color: #d9e8ef;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+nav a:hover, .drop-button:hover, nav a.active {
+    background: #ffffff17;
+    color: white;
+}
+
+.dropdown { position: relative; }
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+    min-width: 210px;
+    padding: 8px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px #071d2b20;
+}
+
+.dropdown.open .dropdown-menu { display: block; }
+
+.dropdown-menu a {
+    display: block;
+    color: #284657;
+    padding: 10px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
+.dropdown-menu a:hover {
+    background: #eaf8f1;
+    color: var(--green);
+}
+
+.nav-cta {
+    background: var(--green);
+    color: white !important;
+    margin-left: 5px;
+}
+
+.nav-cta:hover { background: var(--blue); }
+
+.menu-button {
+    display: none;
+    background: #ffffff12;
+    border: 1px solid #ffffff40;
+    color: white;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+main {
+    max-width: 1450px;
+    margin: auto;
+    padding: 30px 5% 60px;
+}
+
+.welcome {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 42px;
+    border-radius: 22px;
+    color: white;
+    background:
+        radial-gradient(circle at 85% 10%, #3c9fff55, transparent 32%),
+        linear-gradient(120deg, #082c3c, #086a60);
+    box-shadow: 0 15px 35px #0b35491c;
+}
+
+.welcome-content { max-width: 700px; }
+
+.eyebrow {
+    color: #90f0c7;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.welcome h1 {
+    font-size: clamp(29px, 4vw, 43px);
+    line-height: 1.15;
+    margin-bottom: 15px;
+}
+
+.welcome p {
+    color: #d1e5ed;
+    font-size: 14px;
+    max-width: 620px;
+}
+
+.welcome-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin-top: 23px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 16px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover { transform: translateY(-2px); }
+
+.button-primary {
+    background: #16c48a;
+    color: #062e28;
+}
+
+.button-outline {
+    background: #ffffff12;
+    border: 1px solid #ffffff55;
+    color: white;
+}
+
+.welcome-side {
+    min-width: 175px;
+    padding: 21px;
+    border-radius: 15px;
+    background: #ffffff12;
+    border: 1px solid #ffffff28;
+}
+
+.welcome-side span {
+    display: block;
+    color: #c6dce5;
+    font-size: 11px;
+}
+
+.welcome-side strong {
+    display: block;
+    font-size: 32px;
+    margin: 5px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 15px;
+    margin: 32px 0 16px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+    color: #12364a;
+}
+
+.section-heading p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 20px;
+    border-radius: 15px;
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 0 5px 20px #12344a08;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.stat-card:nth-child(1) .stat-icon { background: #e4f8ef; }
+.stat-card:nth-child(2) .stat-icon { background: #fff3d7; }
+.stat-card:nth-child(3) .stat-icon { background: #e4f1ff; }
+.stat-card:nth-child(4) .stat-icon { background: #f0eaff; }
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.stat-number {
+    font-size: 27px;
+    font-weight: 850;
+    line-height: 1.4;
+}
+
+.stat-note { font-size: 10px; color: #8393a0; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, .8fr);
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 23px;
+    box-shadow: 0 5px 20px #12344a08;
+    min-width: 0;
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.panel-heading h3 { font-size: 17px; }
+
+.panel-heading p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.filter-button {
+    background: white;
+    border: 1px solid var(--border);
+    color: #607484;
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.filter-button.active {
+    background: #e3f7ed;
+    color: var(--green);
+    border-color: #b6e9d4;
+}
+
+.service-list { display: grid; gap: 10px; }
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #e5edf3;
+    border-radius: 11px;
+}
+
+.service-item[hidden] { display: none; }
+
+.service-item h4 { font-size: 12px; margin-bottom: 4px; }
+
+.service-item p { color: var(--muted); font-size: 11px; }
+
+.service-id {
+    color: #8a9aa6;
+    font-size: 10px;
+    margin-top: 6px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 30px;
+    padding: 5px 9px;
+    font-size: 10px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.pending { color: #9a6700; background: #fff4d9; }
+.approved { color: #087f5b; background: #e4f8ef; }
+.progress { color: #0866c6; background: #e4f1ff; }
+.completed { color: #647789; background: #eef3f7; }
+
+.empty {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.empty.show { display: block; }
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.quick-card {
+    display: block;
+    padding: 19px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.quick-card:hover {
+    transform: translateY(-4px);
+    border-color: #9bdcc3;
+    box-shadow: 0 10px 25px #12344a12;
+}
+
+.quick-icon { font-size: 25px; margin-bottom: 9px; }
+.quick-card h3 { font-size: 14px; margin-bottom: 5px; }
+
+.quick-card p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.quick-card span {
+    display: inline-block;
+    color: var(--green);
+    font-weight: 850;
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+.activity-list { display: grid; gap: 17px; }
+
+.activity {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+}
+
+.activity-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: #eaf5fc;
+    border-radius: 9px;
+}
+
+.activity h4 { font-size: 12px; }
+
+.activity p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.notice {
+    display: none;
+    margin-bottom: 15px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+.notice.show { display: block; }
+.notice.error { background: #fff0ef; color: #a12622; }
+.notice.info { background: #eaf5fc; color: #0866c6; }
+
+.last-updated {
+    font-size: 10px;
+    color: #8393a0;
+    margin-top: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 23px 15px;
+    background: var(--navy);
+    color: #b8ccd7;
+    font-size: 12px;
+}
+
+footer strong { color: white; }
+
+@media (max-width: 1100px) {
+    .menu-button { display: block; }
+    .navbar { flex-wrap: wrap; }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 4px;
+    }
+
+    nav.open { display: flex; }
+
+    nav > a, .drop-button {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        margin: 3px 0 5px 10px;
+        box-shadow: none;
+        border: none;
+        background: #103747;
+    }
+
+    .dropdown-menu a { color: #d9e8ef; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 750px) {
+    main { padding: 20px 4% 40px; }
+    .welcome { padding: 28px 23px; }
+    .welcome-side { display: none; }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .stat-card { padding: 13px; gap: 9px; }
+
+    .stat-icon {
+        width: 37px;
+        height: 37px;
+        font-size: 18px;
+    }
+
+    .stat-number { font-size: 23px; }
+    .quick-links { grid-template-columns: 1fr; }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 450px) {
+    .brand h2 { font-size: 12px; }
+    .brand-icon { width: 39px; height: 39px; }
+    .service-item { flex-direction: column; }
+    .panel { padding: 15px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <div class="navbar">
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-icon">⚡</span>
+            <span>
+                <h2>Modern Tech Electrical</h2>
+                <small>SOLUTIONS &amp; TECHNOLOGY</small>
+            </span>
+        </a>
+
+        <button class="menu-button" id="menuButton"
+                aria-label="Toggle navigation"
+                aria-expanded="false">☰</button>
+
+        <nav id="navigation">
+            <a href="{{ url_for('dashboard') }}" class="active">Dashboard</a>
+
+            <div class="dropdown">
+                <button class="drop-button" type="button" aria-expanded="false">
+                    Products <span>⌄</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="{{ url_for('products') }}">All Products</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="drop-button" type="button" aria-expanded="false">
+                    Services <span>⌄</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="{{ url_for('services') }}">All Services</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="drop-button" type="button" aria-expanded="false">
+                    Company <span>⌄</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="{{ url_for('about') }}">About Us</a>
+                    <a href="{{ url_for('contact') }}">Contact Us</a>
+                    <a href="{{ url_for('admin_login') }}">Admin Login</a>
+                </div>
+            </div>
+
+            <a href="{{ url_for('quotations') }}" class="nav-cta">
+                Quotations ↗
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="welcome">
+        <div class="welcome-content">
+            <div class="eyebrow">● Business overview</div>
+            <h1>Welcome to Modern Tech Electrical Solutions</h1>
+            <p>
+                We provide reliable electrical services, installations,
+                repairs and energy solutions for our customers.
+            </p>
+
+            <div class="welcome-actions">
+                <a href="#service-status" class="button button-primary">
+                    View Service Status →
+                </a>
+                <a href="{{ url_for('quotations') }}" class="button button-outline">
+                    Create Quotation ↗
+                </a>
+            </div>
+        </div>
+
+        <div class="welcome-side">
+            <span>TOTAL SERVICE REQUESTS</span>
+            <strong id="totalDisplay">{{ total_count }}</strong>
+            <span>Loaded from the database</span>
+        </div>
+    </section>
+
+    <section class="stats" aria-label="Service request statistics">
+        <article class="stat-card">
+            <div class="stat-icon">📋</div>
+            <div>
+                <div class="stat-label">Total Requests</div>
+                <div class="stat-number" id="totalCount">{{ total_count }}</div>
+                <div class="stat-note">All saved requests</div>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon">⏳</div>
+            <div>
+                <div class="stat-label">Pending Services</div>
+                <div class="stat-number" id="pendingCount">{{ pending_count }}</div>
+                <div class="stat-note">Awaiting approval</div>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon">✓</div>
+            <div>
+                <div class="stat-label">Approved Services</div>
+                <div class="stat-number" id="approvedCount">{{ approved_count }}</div>
+                <div class="stat-note">Approved to proceed</div>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon">🛠️</div>
+            <div>
+                <div class="stat-label">In Progress</div>
+                <div class="stat-number" id="progressCount">{{ progress_count }}</div>
+                <div class="stat-note">Work underway</div>
+            </div>
+        </article>
+    </section>
+
+    <section id="service-status">
+        <div class="section-heading">
+            <div>
+                <h2>Service Requests</h2>
+                <p>Requests are retrieved automatically from the company database.</p>
+            </div>
+            <a href="{{ url_for('services') }}"
+               style="color:#087f5b;font-size:12px;font-weight:800;text-decoration:none">
+                Open Services Page →
+            </a>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Customer Service Requests</h3>
+                        <p>Filter requests by their current status.</p>
+                    </div>
+                </div>
+
+                <div id="dashboardNotice" class="notice" role="status"></div>
+
+                <div class="filters">
+                    <button class="filter-button active" data-filter="All">All</button>
+                    <button class="filter-button" data-filter="Pending">Pending</button>
+                    <button class="filter-button" data-filter="Approved">Approved</button>
+                    <button class="filter-button" data-filter="In Progress">In Progress</button>
+                    <button class="filter-button" data-filter="Completed">Completed</button>
+                    <button class="filter-button" data-filter="Rejected">Rejected</button>
+                </div>
+
+                <div class="service-list" id="serviceList">
+                    {% for service in service_requests %}
+                    {% set current_status = (service['status'] or 'Pending')|lower %}
+                    <article class="service-item"
+                             data-status="{{ service['status'] or 'Pending' }}">
+                        <div>
+                            <h4>{{ service['service_name'] or 'Service Request' }}</h4>
+                            <p>{{ service['description'] or 'No additional details provided.' }}</p>
+                            <div class="service-id">
+                                Request: MTE-{{ "%04d"|format(service['id']) }}
+                            </div>
+                            <div class="service-id">
+                                Submitted: {{ service['created_at'] or 'Date not available' }}
+                            </div>
+                        </div>
+
+                        <span class="status
+                            {% if current_status == 'approved' %}approved
+                            {% elif current_status in ['in progress', 'in_progress'] %}progress
+                            {% elif current_status == 'completed' %}completed
+                            {% else %}pending
+                            {% endif %}">
+                            {{ service['status'] or 'Pending' }}
+                        </span>
+                    </article>
+                    {% else %}
+                    <div class="empty show" id="serverEmptyState">
+                        No service requests have been submitted yet.
+                        New requests will appear here after customers submit the service form.
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="empty" id="emptyState">
+                    No requests match this filter.
+                </div>
+
+                <p class="last-updated">
+                    Last updated: <span id="lastUpdated">Loading...</span>
+                    · Automatic refresh every 15 seconds
+                </p>
+            </div>
+
+            <aside class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Activity Overview</h3>
+                        <p>Live summary of saved service requests.</p>
+                    </div>
+                </div>
+
+                <div class="activity-list">
+                    <div class="activity">
+                        <div class="activity-icon">📋</div>
+                        <div>
+                            <h4>Total service requests</h4>
+                            <p><span id="activityTotal">{{ total_count }}</span> requests currently recorded.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <div class="activity-icon">⏳</div>
+                        <div>
+                            <h4>Awaiting approval</h4>
+                            <p><span id="activityPending">{{ pending_count }}</span> requests are pending.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <div class="activity-icon">✓</div>
+                        <div>
+                            <h4>Approved services</h4>
+                            <p><span id="activityApproved">{{ approved_count }}</span> requests are approved.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <div class="activity-icon">🛠️</div>
+                        <div>
+                            <h4>Work underway</h4>
+                            <p><span id="activityProgress">{{ progress_count }}</span> requests are in progress.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section id="quick-access">
+        <div class="section-heading">
+            <div>
+                <h2>Quick Access</h2>
+                <p>Navigate to other sections of your website.</p>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <a href="{{ url_for('products') }}" class="quick-card">
+                <div class="quick-icon">💡</div>
+                <h3>Products</h3>
+                <p>Browse electrical equipment, lighting, cables and solar supplies.</p>
+                <span>Open Products Page →</span>
+            </a>
+
+            <a href="{{ url_for('services') }}" class="quick-card">
+                <div class="quick-icon">🧰</div>
+                <h3>Services</h3>
+                <p>Explore electrical installation, repair and solar services.</p>
+                <span>Open Services Page →</span>
+            </a>
+
+            <a href="{{ url_for('quotations') }}" class="quick-card">
+                <div class="quick-icon">🧾</div>
+                <h3>Quotations</h3>
+                <p>Request a quotation for your electrical project.</p>
+                <span>Open Quotations Page →</span>
+            </a>
+
+            <a href="{{ url_for('about') }}" class="quick-card">
+                <div class="quick-icon">🏢</div>
+                <h3>About Us</h3>
+                <p>Learn about the company, its mission and services.</p>
+                <span>About Our Company →</span>
+            </a>
+
+            <a href="{{ url_for('contact') }}" class="quick-card">
+                <div class="quick-icon">☎️</div>
+                <h3>Contact Us</h3>
+                <p>Send an enquiry or contact the company.</p>
+                <span>Contact the Company →</span>
+            </a>
+
+            <a href="{{ url_for('home') }}" class="quick-card">
+                <div class="quick-icon">⌂</div>
+                <h3>Home Page</h3>
+                <p>Return to the public company homepage.</p>
+                <span>Return Home →</span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © <span id="year"></span>
+    <strong>Modern Tech Electrical Solutions</strong>.
+    All rights reserved.
+</footer>
+
+<script>
+const menuButton = document.getElementById("menuButton");
+const navigation = document.getElementById("navigation");
+const dropdowns = [...document.querySelectorAll(".dropdown")];
+
+menuButton.addEventListener("click", () => {
+    const opened = navigation.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(opened));
+    menuButton.textContent = opened ? "✕" : "☰";
+});
+
+document.querySelectorAll(".drop-button").forEach(button => {
+    button.addEventListener("click", event => {
+        event.stopPropagation();
+
+        const parent = button.closest(".dropdown");
+        const shouldOpen = !parent.classList.contains("open");
+
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove("open");
+            dropdown.querySelector(".drop-button")
+                .setAttribute("aria-expanded", "false");
+        });
+
+        if (shouldOpen) {
+            parent.classList.add("open");
+            button.setAttribute("aria-expanded", "true");
+        }
+    });
+});
+
+document.addEventListener("click", event => {
+    if (!event.target.closest(".dropdown")) {
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove("open");
+            dropdown.querySelector(".drop-button")
+                .setAttribute("aria-expanded", "false");
+        });
+    }
+});
+
+navigation.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+    });
+});
+
+let activeFilter = "All";
+let refreshInProgress = false;
+
+function normalizedStatus(value) {
+    const status = String(value || "Pending")
+        .trim()
+        .toLowerCase();
+
+    if (status === "in_progress" || status === "in progress") {
+        return "In Progress";
+    }
+
+    if (status === "approved") return "Approved";
+    if (status === "completed") return "Completed";
+    if (status === "rejected") return "Rejected";
+
+    return "Pending";
+}
+
+function statusClass(status) {
+    if (status === "Approved") return "approved";
+    if (status === "In Progress") return "progress";
+    if (status === "Completed") return "completed";
+    return "pending";
+}
+
+function safeText(value) {
+    return String(value ?? "");
+}
+
+function makeElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+}
+
+function renderServices(records) {
+    const list = document.getElementById("serviceList");
+    list.replaceChildren();
+
+    if (!records.length) {
+        const empty = makeElement(
+            "div",
+            "empty show",
+            "No service requests have been submitted yet. New requests will appear here automatically."
+        );
+        empty.id = "serverEmptyState";
+        list.appendChild(empty);
+        updateCounts([]);
+        updateFilterDisplay();
+        return;
+    }
+
+    records.forEach(service => {
+        const status = normalizedStatus(service.status);
+        const article = makeElement("article", "service-item");
+        article.dataset.status = status;
+
+        const details = makeElement("div");
+        const heading = makeElement(
+            "h4",
+            "",
+            safeText(service.service_name || "Service Request")
+        );
+
+        const description = makeElement(
+            "p",
+            "",
+            safeText(service.description || "No additional details provided.")
+        );
+
+        const requestId = makeElement(
+            "div",
+            "service-id",
+            "Request: MTE-" + String(service.id ?? "").padStart(4, "0")
+        );
+
+        const created = makeElement(
+            "div",
+            "service-id",
+            "Submitted: " + safeText(service.created_at || "Date not available")
+        );
+
+        details.append(heading, description, requestId, created);
+
+        const badge = makeElement("span", "status " + statusClass(status), status);
+        article.append(details, badge);
+        list.appendChild(article);
+    });
+
+    updateCounts(records);
+    updateFilterDisplay();
+}
+
+function updateCounts(records) {
+    const total = records.length;
+    const pending = records.filter(r => normalizedStatus(r.status) === "Pending").length;
+    const approved = records.filter(r => normalizedStatus(r.status) === "Approved").length;
+    const progress = records.filter(r => normalizedStatus(r.status) === "In Progress").length;
+
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("totalDisplay").textContent = total;
+    document.getElementById("pendingCount").textContent = pending;
+    document.getElementById("approvedCount").textContent = approved;
+    document.getElementById("progressCount").textContent = progress;
+
+    document.getElementById("activityTotal").textContent = total;
+    document.getElementById("activityPending").textContent = pending;
+    document.getElementById("activityApproved").textContent = approved;
+    document.getElementById("activityProgress").textContent = progress;
+}
+
+function updateFilterDisplay() {
+    const items = [...document.querySelectorAll(
+        "#serviceList .service-item"
+    )];
+
+    let visible = 0;
+
+    items.forEach(item => {
+        const show = activeFilter === "All" ||
+            normalizedStatus(item.dataset.status) === activeFilter;
+
+        item.hidden = !show;
+        if (show) visible++;
+    });
+
+    const emptyState = document.getElementById("emptyState");
+    emptyState.classList.toggle("show", items.length > 0 && visible === 0);
+}
+
+document.querySelectorAll(".filter-button").forEach(button => {
+    button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+
+        document.querySelectorAll(".filter-button").forEach(item => {
+            item.classList.toggle("active", item === button);
+        });
+
+        updateFilterDisplay();
+    });
+});
+
+async function loadDashboardData() {
+    if (refreshInProgress) return;
+    refreshInProgress = true;
+
+    const notice = document.getElementById("dashboardNotice");
+
+    try {
+        const response = await fetch("/api/dashboard/service-requests", {
+            method: "GET",
+            headers: { "Accept": "application/json" },
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                "Could not load live requests. Check the Flask dashboard API route."
+            );
+        }
+
+        const result = await response.json();
+
+        if (result.success === false) {
+            throw new Error(result.error || "Unable to load service requests.");
+        }
+
+        const records = Array.isArray(result)
+            ? result
+            : (result.requests || result.data?.requests || result.data || []);
+
+        if (!Array.isArray(records)) {
+            throw new Error("The dashboard API returned an unexpected response.");
+        }
+
+        renderServices(records);
+
+        notice.textContent = "";
+        notice.className = "notice";
+
+        document.getElementById("lastUpdated").textContent =
+            new Date().toLocaleTimeString();
+
+    } catch (error) {
+        console.error("Dashboard refresh error:", error);
+
+        notice.textContent =
+            error.message + " The page will try again automatically.";
+        notice.className = "notice error show";
+
+        document.getElementById("lastUpdated").textContent =
+            "Refresh failed";
+    } finally {
+        refreshInProgress = false;
+    }
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+loadDashboardData();
+setInterval(loadDashboardData, 15000);
+</script>
+</body>
+</html>

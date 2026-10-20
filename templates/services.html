@@ -1,0 +1,954 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#073b35">
+<title>Electrical Services | Modern Tech Electrical Solutions</title>
+
+<style>
+:root {
+  --green: #087f5b;
+  --green-dark: #064e3b;
+  --navy: #102a43;
+  --blue: #1769aa;
+  --gold: #f4b942;
+  --bg: #f4f8fb;
+  --white: #fff;
+  --text: #183044;
+  --muted: #637789;
+  --border: #dce6ed;
+  --shadow: 0 12px 32px rgba(16,42,67,.09);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .65; cursor: wait; }
+
+.topbar {
+  background: #052e2b;
+  color: #e8f7f2;
+  font-size: .88rem;
+  padding: 8px 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 3px 18px rgba(16,42,67,.08);
+}
+.navbar {
+  max-width: 1250px;
+  margin: auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 800;
+  color: var(--navy);
+  font-size: 1.04rem;
+}
+.logo {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(145deg,var(--green),var(--blue));
+  font-size: 1.4rem;
+}
+.brand small {
+  display: block;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .3px;
+}
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.navlinks a {
+  padding: 10px 13px;
+  border-radius: 9px;
+  color: #334e62;
+  font-weight: 700;
+  font-size: .92rem;
+}
+.navlinks a:hover, .navlinks a.active {
+  background: #e8f5ef;
+  color: var(--green-dark);
+}
+.nav-cta, .btn {
+  border: 0;
+  border-radius: 10px;
+  background: var(--green);
+  color: white;
+  padding: 11px 16px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: .2s;
+}
+.nav-cta:hover, .btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+}
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 9px;
+  padding: 8px 12px;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.hero {
+  color: white;
+  padding: 70px 24px 76px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(59,178,155,.32),transparent 28%),
+    linear-gradient(120deg,#062f35,#075b53 55%,#155d91);
+}
+.hero-inner {
+  max-width: 1180px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.4fr .8fr;
+  gap: 42px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.09);
+  padding: 7px 12px;
+  border-radius: 30px;
+  font-size: .84rem;
+  font-weight: 700;
+}
+.hero h1 {
+  font-size: clamp(2.2rem,5vw,3.7rem);
+  line-height: 1.1;
+  margin: 20px 0 16px;
+  letter-spacing: -1.4px;
+}
+.hero p {
+  max-width: 680px;
+  color: #e0f3f0;
+  font-size: 1.06rem;
+  margin: 0 0 25px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-light { background: white; color: var(--green-dark); }
+.btn-light:hover { background: #edf8f4; }
+.hero-panel {
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.09);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 25px;
+}
+.hero-panel h3 { margin: 0 0 14px; font-size: 1.1rem; }
+.hero-point {
+  display: flex;
+  gap: 12px;
+  margin: 13px 0;
+  color: #f0fffb;
+}
+.hero-point span:first-child {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.14);
+}
+
+.section {
+  max-width: 1250px;
+  margin: auto;
+  padding: 54px 24px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+.section-head h2 {
+  font-size: clamp(1.65rem,3vw,2.25rem);
+  line-height: 1.2;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+.section-head p { color: var(--muted); margin: 0; max-width: 700px; }
+
+.service-tools {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 23px;
+}
+.search-wrap { flex: 1; min-width: 230px; position: relative; }
+.search-wrap input {
+  width: 100%;
+  padding: 13px 15px 13px 42px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: white;
+  outline: none;
+}
+.search-wrap input:focus, .form-control:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(8,127,91,.12);
+}
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+.filter-select {
+  min-width: 210px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: white;
+  color: var(--text);
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 20px;
+}
+.service-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(16,42,67,.04);
+  transition: transform .2s,box-shadow .2s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.card-top { height: 7px; background: linear-gradient(90deg,var(--green),var(--blue)); }
+.card-body { padding: 21px; display: flex; flex-direction: column; flex: 1; }
+.service-icon {
+  width: 53px;
+  height: 53px;
+  border-radius: 14px;
+  background: #e7f5ef;
+  color: var(--green-dark);
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+}
+.service-card h3 { color: var(--navy); font-size: 1.13rem; line-height: 1.35; margin: 0 0 8px; }
+.service-card p { font-size: .93rem; color: var(--muted); margin: 0 0 13px; }
+.service-card ul { margin: 0 0 19px; padding-left: 19px; color: #40586a; font-size: .9rem; }
+.service-card li { margin: 5px 0; }
+.card-actions { margin-top: auto; display: flex; gap: 9px; }
+.card-actions .btn { width: 100%; }
+.empty-state {
+  display: none;
+  text-align: center;
+  background: white;
+  border: 1px dashed var(--border);
+  padding: 35px;
+  border-radius: 15px;
+  color: var(--muted);
+}
+
+.info-strip { background: #eaf5f1; border-top: 1px solid #d8ebe4; border-bottom: 1px solid #d8ebe4; }
+.info-grid {
+  max-width: 1250px;
+  margin: auto;
+  padding: 28px 24px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.info-item { display: flex; gap: 13px; align-items: flex-start; }
+.info-item .info-icon { font-size: 1.5rem; }
+.info-item strong { display: block; color: var(--navy); margin-bottom: 3px; }
+.info-item span { font-size: .9rem; color: var(--muted); }
+
+footer { background: #071f2e; color: #d4e2ea; padding: 34px 24px; }
+.footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.footer-inner p { margin: 7px 0; color: #a8bfcc; font-size: .9rem; }
+.footer-links { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.footer-links a:hover { color: #fff; }
+footer small { color: #a8bfcc; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4,20,31,.72);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-y: auto;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  width: min(720px,100%);
+  max-height: 94vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 25px 80px rgba(0,0,0,.28);
+}
+.modal-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  background: white;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-head h2 { margin: 0; color: var(--navy); font-size: 1.45rem; }
+.modal-head p { margin: 4px 0 0; color: var(--muted); font-size: .92rem; }
+.close-btn {
+  border: 0;
+  border-radius: 9px;
+  background: #edf2f5;
+  color: #334e62;
+  font-size: 1.35rem;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+.form-body { padding: 23px 24px; }
+.selected-service {
+  padding: 12px 14px;
+  background: #eaf5f1;
+  border: 1px solid #d3e9df;
+  border-radius: 10px;
+  color: var(--green-dark);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.full { grid-column: 1/-1; }
+.form-field label { font-size: .9rem; font-weight: 800; color: #294458; }
+.form-control {
+  width: 100%;
+  border: 1px solid #cfdae3;
+  border-radius: 9px;
+  padding: 11px 12px;
+  background: #fff;
+  outline: none;
+  color: var(--text);
+}
+textarea.form-control { min-height: 110px; resize: vertical; }
+.form-note { font-size: .83rem; color: var(--muted); margin: 15px 0; }
+.form-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-top: 18px; }
+.btn-secondary {
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--navy);
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-weight: 800;
+}
+.success-message {
+  display: none;
+  padding: 15px;
+  border: 1px solid #b9e5ce;
+  background: #edfff4;
+  color: #14532d;
+  border-radius: 10px;
+  margin-top: 16px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.success-message.error {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+@media(max-width:950px) {
+  .service-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .hero-inner { grid-template-columns: 1fr .8fr; }
+}
+@media(max-width:760px) {
+  .menu-toggle { display: block; }
+  .navbar { flex-wrap: wrap; }
+  .navlinks {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 10px;
+  }
+  .navlinks.open { display: flex; }
+  .navlinks a, .nav-cta { width: 100%; text-align: center; justify-content: center; }
+  .hero { padding: 50px 20px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-panel { max-width: 520px; }
+  .section { padding: 40px 18px; }
+  .section-head { align-items: flex-start; flex-direction: column; }
+  .info-grid { grid-template-columns: 1fr; padding: 25px 20px; }
+}
+@media(max-width:560px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .topbar { justify-content: center; text-align: center; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-field.full { grid-column: auto; }
+  .modal-head, .form-body { padding: 18px; }
+  .brand { font-size: .95rem; }
+  .brand small { font-size: .68rem; }
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">
+  <span>⚡ Reliable Electrical & Energy Solutions</span>
+  <span>Safety • Quality • Professional Service</span>
+</div>
+
+<header>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="{{ url_for('home') }}" aria-label="Modern Tech Electrical Solutions home">
+      <span class="logo">⚡</span>
+      <span>MODERN TECH<small>ELECTRICAL SOLUTIONS</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" type="button">☰ Menu</button>
+
+    <div class="navlinks" id="navLinks">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a class="active" href="{{ url_for('services') }}">Services</a>
+      <a href="{{ url_for('products') }}">Products</a>
+      <a href="{{ url_for('quotations') }}">Quotations</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+      <button class="nav-cta" type="button" onclick="openRequest('General Electrical Enquiry')">Reach Us ↗</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">⚡ Electrical Services & Solutions</span>
+      <h1>Powering your ideas with safe, reliable solutions.</h1>
+      <p>From home wiring and electrical repairs to solar power, lighting, industrial controls and electrical supplies, explore our services and tell us how we can help.</p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#all-services">Explore Services ↓</a>
+        <button class="btn" style="background:#f4b942;color:#17324a" type="button" onclick="openRequest('General Electrical Enquiry')">Request Assistance ↗</button>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <h3>How to request a service</h3>
+      <div class="hero-point"><span>1</span><span>Choose the service that matches your needs.</span></div>
+      <div class="hero-point"><span>2</span><span>Click <strong>Reach Us</strong> and provide your project details.</span></div>
+      <div class="hero-point"><span>3</span><span>Submit your request so the team can review it and follow up.</span></div>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="all-services">
+  <div class="section-head">
+    <div>
+      <h2>Our Electrical Services</h2>
+      <p>Browse the services below. Select Reach Us to open a form with the service preselected.</p>
+    </div>
+  </div>
+
+  <div class="service-tools">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="serviceSearch" type="search" placeholder="Search services, e.g. solar, wiring, repairs..." aria-label="Search services">
+    </div>
+    <select class="filter-select" id="categoryFilter" aria-label="Filter services by category">
+      <option value="all">All service categories</option>
+      <option value="installation">Installation</option>
+      <option value="repair">Repairs & Maintenance</option>
+      <option value="solar">Solar & Backup Power</option>
+      <option value="lighting">Lighting & Security</option>
+      <option value="industrial">Industrial & Automation</option>
+      <option value="supply">Electrical Supplies</option>
+      <option value="consulting">Inspection & Consulting</option>
+    </select>
+  </div>
+
+  <div class="service-grid" id="serviceGrid">
+
+    <article class="service-card" data-category="installation" data-search="house apartment residential commercial industrial wiring sockets switches lighting distribution board circuit breaker new building upgrade">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">🏠</div><h3>Electrical Installation</h3>
+        <p>Electrical installation for new buildings, renovations, homes and business premises.</p>
+        <ul><li>House and apartment wiring</li><li>Commercial and industrial wiring</li><li>Sockets, switches and lighting points</li><li>Distribution boards and circuit breakers</li><li>New installations and system upgrades</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Electrical Installation')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="repair" data-search="repair maintenance fault detection troubleshooting faulty wiring circuit breaker sockets switches inspection testing preventive maintenance">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">🧰</div><h3>Electrical Repair & Maintenance</h3>
+        <p>Help identify electrical faults and maintain installations for reliable operation.</p>
+        <ul><li>Fault detection and troubleshooting</li><li>Faulty wiring repair</li><li>Circuit breaker replacement</li><li>Socket and switch repairs</li><li>Inspection, testing and preventive maintenance</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Electrical Repair & Maintenance')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="solar" data-search="solar energy panel rooftop water heating street security lights inverter battery backup system servicing maintenance">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">☀️</div><h3>Solar & Backup Power</h3>
+        <p>Explore solar and backup systems for homes, offices, shops and other facilities.</p>
+        <ul><li>Solar panel installation</li><li>Solar water heating systems</li><li>Solar street and security lights</li><li>Inverters and battery backup</li><li>Solar system servicing and maintenance</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Solar & Backup Power')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="lighting" data-search="lighting security indoor outdoor LED upgrades motion sensor floodlights emergency lighting CCTV power access control">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">💡</div><h3>Lighting & Security Systems</h3>
+        <p>Improve visibility, convenience and security with suitable lighting and power connections.</p>
+        <ul><li>Indoor and outdoor lighting</li><li>LED lighting upgrades</li><li>Motion-sensor lights and floodlights</li><li>Emergency lighting</li><li>CCTV and access-control power connections</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Lighting & Security Systems')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="consulting" data-search="electrical inspection testing installation unsafe conditions compliance">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">📝</div><h3>Electrical Inspection & Testing</h3>
+        <p>Request checks to help identify faults and unsafe conditions in an electrical installation.</p>
+        <ul><li>Electrical installation checks</li><li>Testing and fault reports</li><li>Safety-related recommendations</li><li>Inspection before or after renovation</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Electrical Inspection & Testing')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="installation" data-search="earthing grounding lightning protection surge protection">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">🛡️</div><h3>Earthing & Surge Protection</h3>
+        <p>Ask about suitable earthing and surge-protection solutions for your property or equipment.</p>
+        <ul><li>Earthing system installation</li><li>Surge-protection devices</li><li>Lightning-protection planning</li><li>Earthing system inspection</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Earthing & Surge Protection')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="installation" data-search="generator installation backup power transfer switch changeover">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">🔌</div><h3>Generator Installation</h3>
+        <p>Request support for generator connections and backup-power arrangements.</p>
+        <ul><li>Generator electrical connections</li><li>Transfer and changeover switches</li><li>Backup power planning</li><li>Inspection and maintenance requests</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Generator Installation')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="lighting" data-search="electric fence security fencing installation maintenance energizer">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">🔒</div><h3>Electric Fence Installation</h3>
+        <p>Ask about electric fencing installation and maintenance for property security.</p>
+        <ul><li>Electric fence installation</li><li>Fence energizer power connections</li><li>Fault checks and maintenance</li><li>Security system integration</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Electric Fence Installation')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="installation" data-search="water pump electrical wiring pump control panel borehole tank tower">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">💧</div><h3>Water Pump Electrical Systems</h3>
+        <p>Electrical support for water pumps used in homes, farms, buildings and borehole systems.</p>
+        <ul><li>Water-pump electrical wiring</li><li>Pump control and protection</li><li>Fault diagnosis</li><li>Solar pump power connections</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Water Pump Electrical Systems')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="industrial" data-search="industrial motor control motor starters control panels automation PLC machine electrical">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">⚙️</div><h3>Industrial Motor Control & Automation</h3>
+        <p>Support for suitable motor-control, machine-power and basic automation requirements.</p>
+        <ul><li>Motor starters and control panels</li><li>Motor wiring and troubleshooting</li><li>Basic PLC and automation support</li><li>Industrial electrical maintenance</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Industrial Motor Control & Automation')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="industrial" data-search="structured cabling office data network communication cable routing">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">🖧</div><h3>Structured Cabling</h3>
+        <p>Organised cable routing and infrastructure for offices and commercial premises.</p>
+        <ul><li>Structured data-cable routing</li><li>Office cable organisation</li><li>Network-point planning</li><li>Coordination of power and data routes</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Structured Cabling')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="supply" data-search="electrical materials supplies cables conduits sockets switches breakers accessories">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">📦</div><h3>Electrical Materials & Supplies</h3>
+        <p>Enquire about electrical materials and accessories for installations and maintenance.</p>
+        <ul><li>Electrical cables and conduits</li><li>Sockets and switches</li><li>Breakers and distribution accessories</li><li>Lighting products and fittings</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Electrical Materials & Supplies')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="consulting" data-search="energy audit efficiency electricity consumption energy saving">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">📊</div><h3>Energy Audits & Efficiency</h3>
+        <p>Identify opportunities to manage energy use and explore more efficient equipment.</p>
+        <ul><li>Energy-use assessment</li><li>Lighting efficiency recommendations</li><li>Equipment and load review</li><li>Energy-saving improvement suggestions</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Energy Audits & Efficiency')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-category="consulting" data-search="electrical project consultation technical advice quotation installation planning supervision">
+      <div class="card-top"></div><div class="card-body">
+        <div class="service-icon">📐</div><h3>Electrical Project Consultation</h3>
+        <p>Discuss your electrical project scope, materials, planning and quotation requirements.</p>
+        <ul><li>Technical consultation</li><li>Installation planning</li><li>Materials and scope assessment</li><li>Quotation and project coordination</li></ul>
+        <div class="card-actions"><button class="btn" type="button" onclick="openRequest('Electrical Project Consultation')">Reach Us ↗</button></div>
+      </div>
+    </article>
+
+  </div>
+  <div class="empty-state" id="emptyState">No matching services found. Try another search term or category.</div>
+</section>
+
+<div class="info-strip">
+  <div class="info-grid">
+    <div class="info-item"><span class="info-icon">🦺</span><div><strong>Safety first</strong><span>Electrical work should be assessed and carried out by appropriately qualified personnel.</span></div></div>
+    <div class="info-item"><span class="info-icon">📋</span><div><strong>Clear service requests</strong><span>Tell us what you need, where the work is, and any useful project details.</span></div></div>
+    <div class="info-item"><span class="info-icon">🤝</span><div><strong>Request a quotation</strong><span>Final costs depend on the scope, materials, site conditions and assessment.</span></div></div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <strong>MODERN TECH ELECTRICAL SOLUTIONS</strong>
+      <p>Electrical • Solar • Maintenance • Supplies</p>
+      <small>© <span id="year"></span> Modern Tech Electrical Solutions. All rights reserved.</small>
+    </div>
+    <div class="footer-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('products') }}">Products</a>
+      <a href="{{ url_for('quotations') }}">Quotations</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h2 id="modalTitle">Request a Service</h2>
+        <p>Share your details so your request can be reviewed.</p>
+      </div>
+      <button type="button" class="close-btn" id="closeModal" aria-label="Close form">×</button>
+    </div>
+
+    <div class="form-body">
+      <div class="selected-service">
+        Selected service: <span id="selectedServiceText">General Electrical Enquiry</span>
+      </div>
+
+      <form id="serviceRequestForm" action="{{ url_for('services') }}" method="POST">
+        <input type="hidden" id="serviceName" name="service_name" value="General Electrical Enquiry">
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="customerName">Full name *</label>
+            <input class="form-control" id="customerName" name="customer_name" autocomplete="name" required maxlength="100" placeholder="Enter your full name">
+          </div>
+
+          <div class="form-field">
+            <label for="phone">Phone number *</label>
+            <input class="form-control" id="phone" name="phone" type="tel" autocomplete="tel" required maxlength="20" placeholder="e.g. 07XXXXXXXX">
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input class="form-control" id="email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@example.com">
+          </div>
+
+          <div class="form-field">
+            <label for="location">Service location *</label>
+            <input class="form-control" id="location" name="location" autocomplete="street-address" required maxlength="180" placeholder="Town, estate or area">
+          </div>
+
+          <div class="form-field">
+            <label for="propertyType">Property / project type</label>
+            <select class="form-control" id="propertyType" name="property_type">
+              <option value="">Select type</option>
+              <option>Residential / home</option>
+              <option>Commercial / office</option>
+              <option>Industrial / workshop</option>
+              <option>Institution / school</option>
+              <option>Farm / agricultural</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="preferredDate">Preferred service date</label>
+            <input class="form-control" id="preferredDate" name="preferred_date" type="date">
+          </div>
+
+          <div class="form-field full">
+            <label for="description">Describe the help you need *</label>
+            <textarea class="form-control" id="description" name="description" required maxlength="2000" placeholder="Describe the issue, work required, equipment involved, or any details that will help us understand your request."></textarea>
+          </div>
+        </div>
+
+        <p class="form-note">
+          Please do not include passwords, payment PINs or other sensitive information.
+          Your service request will be sent to the company server for processing.
+        </p>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="cancelRequest">Cancel</button>
+          <button type="submit" class="btn" id="submitRequest">Submit Service Request ↗</button>
+        </div>
+
+        <div class="success-message" id="successMessage" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+const modal = document.getElementById("requestModal");
+const form = document.getElementById("serviceRequestForm");
+const serviceNameInput = document.getElementById("serviceName");
+const selectedServiceText = document.getElementById("selectedServiceText");
+const successMessage = document.getElementById("successMessage");
+const submitButton = document.getElementById("submitRequest");
+
+function showMessage(message, isError = false) {
+  successMessage.textContent = message;
+  successMessage.classList.toggle("error", isError);
+  successMessage.style.display = "block";
+}
+
+function openRequest(service) {
+  serviceNameInput.value = service;
+  selectedServiceText.textContent = service;
+  document.getElementById("modalTitle").textContent = "Request a Service";
+  successMessage.style.display = "none";
+  successMessage.classList.remove("error");
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  setTimeout(() => {
+    document.getElementById("customerName").focus();
+  }, 80);
+}
+
+function closeRequest() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("closeModal").addEventListener("click", closeRequest);
+document.getElementById("cancelRequest").addEventListener("click", closeRequest);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeRequest();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && modal.classList.contains("open")) {
+    closeRequest();
+  }
+});
+
+const searchInput = document.getElementById("serviceSearch");
+const categoryFilter = document.getElementById("categoryFilter");
+const serviceCards = Array.from(document.querySelectorAll(".service-card"));
+const emptyState = document.getElementById("emptyState");
+
+function filterServices() {
+  const term = searchInput.value.trim().toLowerCase();
+  const category = categoryFilter.value;
+  let visible = 0;
+
+  serviceCards.forEach(card => {
+    const searchableText = (
+      card.dataset.search + " " + card.innerText
+    ).toLowerCase();
+
+    const matchesTerm = searchableText.includes(term);
+    const matchesCategory =
+      category === "all" || card.dataset.category === category;
+    const shouldShow = matchesTerm && matchesCategory;
+
+    card.style.display = shouldShow ? "flex" : "none";
+    if (shouldShow) visible++;
+  });
+
+  emptyState.style.display = visible ? "none" : "block";
+}
+
+searchInput.addEventListener("input", filterServices);
+categoryFilter.addEventListener("change", filterServices);
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  const preferredDate = document.getElementById("preferredDate").value;
+  if (preferredDate) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const selectedDate = new Date(preferredDate + "T00:00:00");
+    if (selectedDate < today) {
+      showMessage("Please choose today or a future preferred service date.", true);
+      return;
+    }
+  }
+
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+  successMessage.style.display = "none";
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json"
+      },
+      credentials: "same-origin"
+    });
+
+    const contentType = response.headers.get("content-type") || "";
+    let result;
+
+    if (contentType.includes("application/json")) {
+      result = await response.json();
+    } else {
+      throw new Error(
+        "The server did not return JSON. Check your Flask /services POST route."
+      );
+    }
+
+    if (!response.ok || result.success === false) {
+      throw new Error(
+        result.error || result.message || "The server could not save your request."
+      );
+    }
+
+    const details = result.data || {};
+    const reference = details.id
+      ? "MTE-" + String(details.id).padStart(6, "0")
+      : "Submitted";
+
+    showMessage(
+      "Your service request has been submitted successfully!" +
+      "\nReference: " + reference +
+      "\nService: " + (details.service_name || serviceNameInput.value) +
+      "\nStatus: " + (details.status || "Pending") +
+      "\n\nThank you. Your request is now available for the team to review."
+    );
+
+    // Clear customer fields after a successful submission.
+    form.reset();
+
+    // Restore the selected service after resetting the form.
+    serviceNameInput.value = details.service_name || "General Electrical Enquiry";
+    selectedServiceText.textContent = serviceNameInput.value;
+
+    successMessage.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+  } catch (error) {
+    console.error("Service request submission failed:", error);
+
+    showMessage(
+      "We could not submit your service request.\n" +
+      (error.message || "Please check your connection and try again.") +
+      "\n\nYour request may not have been saved. Please try again.",
+      true
+    );
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
+  }
+});
+</script>
+</body>
+</html>

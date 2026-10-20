@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071d2b">
+<title>Quotation Management | Modern Tech Electrical Solutions</title>
+
+
+<style>
+
+:root{--navy:#071d2b;--green:#087f5b;--green2:#11b981;--blue:#0866c6;--ink:#193344;--muted:#65798a;--line:#dce6ee;--page:#f2f6fa;--white:#fff;--amber:#fff3d6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--page);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(110deg,#071d2b,#0a4650);color:white;box-shadow:0 7px 25px #071d2b20}
+.navbar{max-width:1400px;margin:auto;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;color:white;text-decoration:none;font-weight:800}
+.brand-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--green2),var(--blue));font-size:23px}
+.brand small{display:block;font-size:9px;letter-spacing:2px;color:#b9d9e4;margin-top:3px}
+nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+nav a{color:#e0edf3;text-decoration:none;padding:9px 12px;border-radius:8px;font-size:13px;font-weight:700}
+nav a:hover,nav a.active{background:#ffffff18;color:white}
+main{max-width:1400px;margin:auto;padding:28px 5% 55px}
+.page-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:23px}
+.eyebrow{font-size:11px;font-weight:850;letter-spacing:1.8px;text-transform:uppercase;color:var(--green);margin-bottom:7px}
+h1{font-size:clamp(27px,4vw,38px);line-height:1.15;color:#102f43;letter-spacing:-.8px}
+.page-heading p{max-width:720px;color:var(--muted);font-size:14px;margin-top:9px}
+.admin-badge{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:30px;background:#e3f7ed;color:#08744f;font-weight:800;font-size:12px;white-space:nowrap}
+.admin-badge span{width:7px;height:7px;border-radius:50%;background:#0eaa71}
+.notice{padding:13px 16px;border:1px solid #f0d9a4;background:var(--amber);border-radius:11px;color:#76551b;font-size:12px;margin-bottom:22px}
+.workspace{display:grid;grid-template-columns:minmax(320px,.9fr) minmax(0,1.25fr);gap:22px;align-items:start}
+.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:23px;box-shadow:0 7px 24px #12344a08;min-width:0}
+.panel-title{font-size:18px;color:#14364a;margin-bottom:4px}
+.panel-subtitle{font-size:12px;color:var(--muted);margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800;color:#304b5d}
+input,select,textarea{width:100%;font:inherit;font-size:13px;color:#213c4d;background:#fff;border:1px solid #d4e0e9;border-radius:8px;padding:11px 12px;outline:none;transition:border .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:#3d9be4;box-shadow:0 0 0 3px #0866c612}
+textarea{min-height:84px;resize:vertical}
+.field-hint{font-size:10px;color:#7b8e9c}
+.section-label{grid-column:1/-1;font-size:11px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900;color:var(--green);padding-top:7px;border-bottom:1px solid #e8eef3;padding-bottom:7px}
+.items-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:19px 0 10px}
+.items-head h3{font-size:14px;color:#16384b}
+.small-btn{border:1px solid #b9dfd0;background:#effaf5;color:#087650;padding:7px 10px;border-radius:7px;font-size:11px;font-weight:800;cursor:pointer}
+.items-wrap{display:grid;gap:9px}
+.item-row{display:grid;grid-template-columns:minmax(0,1.5fr) 65px 95px 28px;gap:7px;align-items:center}
+.item-row input{padding:9px 8px;font-size:12px}
+.item-row .remove{border:0;background:#ffeded;color:#b42318;border-radius:7px;height:35px;cursor:pointer;font-weight:900}
+.items-caption{display:grid;grid-template-columns:minmax(0,1.5fr) 65px 95px 28px;gap:7px;font-size:10px;color:#788b99;margin-bottom:5px}
+.items-caption span:nth-child(2),.items-caption span:nth-child(3){text-align:center}
+.form-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:21px}
+.btn{border:0;border-radius:9px;padding:11px 15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:12px;cursor:pointer;text-decoration:none;transition:.2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(120deg,var(--green),#0798a0);color:white;box-shadow:0 6px 16px #087f5b22}
+.btn-secondary{background:#eaf2f8;color:#21455b;border:1px solid #d7e3eb}
+.btn-dark{background:var(--navy);color:white}
+.btn-danger{background:#fff0ef;color:#b42318;border:1px solid #f4d1ce}
+.preview-panel{padding:0;overflow:hidden}
+.preview-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;background:#f9fbfd;border-bottom:1px solid var(--line)}
+.preview-toolbar h2{font-size:16px;color:#17384b}
+.preview-toolbar p{font-size:11px;color:var(--muted)}
+.preview-actions{display:flex;flex-wrap:wrap;gap:7px}
+.preview-actions .btn{padding:9px 11px}
+.paper-wrap{padding:22px;background:#eaf0f5}
+.paper{max-width:800px;min-height:760px;margin:auto;background:white;padding:clamp(22px,4vw,45px);box-shadow:0 8px 30px #15364b13;color:#253b4a}
+.quote-top{display:flex;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:3px solid var(--green)}
+.company{display:flex;gap:12px;align-items:center}
+.company-logo{width:48px;height:48px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--blue));color:white;font-size:25px;flex-shrink:0}
+.company h3{font-size:16px;color:#10374b;line-height:1.2}
+.company p{font-size:9px;letter-spacing:1.4px;color:#647b89;font-weight:800;margin-top:4px}
+.quote-heading{text-align:right}
+.quote-heading h2{font-size:25px;letter-spacing:1px;color:var(--green)}
+.quote-heading p{font-size:11px;color:#647b89}
+.quote-meta{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:21px 0}
+.quote-meta h4{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#7a8d9b;margin-bottom:7px}
+.quote-meta p{font-size:12px;margin:3px 0;overflow-wrap:anywhere}
+.quote-meta strong{color:#1a394b}
+.quote-description{padding:12px 14px;background:#f0f8f5;border-left:3px solid var(--green);font-size:11px;margin-bottom:19px}
+.quote-table{width:100%;border-collapse:collapse;font-size:11px}
+.quote-table th{background:#0d3547;color:white;text-align:left;padding:11px 9px}
+.quote-table td{padding:11px 9px;border-bottom:1px solid #e3ebf0;vertical-align:top;overflow-wrap:anywhere}
+.quote-table th:nth-child(n+2),.quote-table td:nth-child(n+2){text-align:right}
+.quote-table td:first-child{width:48%}
+.totals{width:min(100%,300px);margin:17px 0 0 auto;font-size:12px}
+.total-row{display:flex;justify-content:space-between;gap:15px;padding:6px 0}
+.total-row.grand{border-top:2px solid var(--green);margin-top:5px;padding-top:11px;font-size:16px;font-weight:900;color:#0b7253}
+.amount-words{margin-top:20px;padding:11px 13px;border:1px solid #dbe8e2;border-radius:8px;font-size:10px;color:#526c7b}
+.quote-notes{margin-top:23px}
+.quote-notes h4{font-size:11px;margin-bottom:5px;color:#193b4e}
+.quote-notes p{font-size:10px;color:#657a88;white-space:pre-wrap;overflow-wrap:anywhere}
+.signatures{display:grid;grid-template-columns:1fr 1fr;gap:35px;margin-top:40px}
+.signature{border-top:1px solid #9babb6;padding-top:7px;font-size:10px;color:#607786}
+.status-line{display:inline-block;margin-top:16px;padding:5px 9px;border-radius:30px;background:#fff4d9;color:#8b6000;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+.status-line.approved{background:#e3f7ed;color:#08744f}
+.footer-note{text-align:center;margin-top:28px;border-top:1px solid #e2eaf0;padding-top:13px;font-size:9px;color:#83939d}
+.history{margin-top:22px}
+.history-list{display:grid;gap:9px}
+.history-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border:1px solid #e1eaf0;border-radius:10px}
+.history-row strong{display:block;font-size:12px}
+.history-row small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.history-actions{display:flex;gap:6px;flex-wrap:wrap}
+.history-actions button{padding:6px 8px;border:1px solid var(--line);border-radius:7px;background:#fff;color:#35556a;font-size:10px;font-weight:800;cursor:pointer}
+.empty-history{padding:16px;background:#f7fafc;border-radius:9px;color:var(--muted);font-size:12px;text-align:center}
+footer{background:var(--navy);color:#b6cbd7;text-align:center;padding:23px 15px;font-size:12px}
+footer strong{color:white}
+@media(max-width:1000px){.workspace{grid-template-columns:1fr}.preview-panel{min-width:0}}
+@media(max-width:600px){.navbar{align-items:flex-start;flex-direction:column}.navbar nav{gap:3px}nav a{padding:8px;font-size:11px}main{padding:22px 4% 40px}.page-heading{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.field.full,.section-label{grid-column:auto}.item-row,.items-caption{grid-template-columns:minmax(0,1fr) 48px 78px 26px;gap:5px}.panel{padding:16px}.preview-toolbar{align-items:flex-start;flex-direction:column}.paper-wrap{padding:8px}.paper{padding:18px 13px;min-height:0}.quote-top{gap:8px}.company{gap:7px}.company-logo{width:35px;height:35px;font-size:19px}.company h3{font-size:12px}.company p{font-size:7px;letter-spacing:.6px}.quote-heading h2{font-size:18px}.quote-heading p{font-size:9px}.quote-meta{gap:9px}.quote-meta p{font-size:10px}.quote-table{font-size:9px}.quote-table th,.quote-table td{padding:7px 4px}.quote-table td:first-child{width:40%}.totals{font-size:10px}.total-row.grand{font-size:14px}.signatures{gap:15px}.history-row{align-items:flex-start;flex-direction:column}}
+@media print{
+ @page{size:A4;margin:12mm}
+ body{background:white!important;color:#111}
+ header,main>.page-heading,main>.notice,.workspace>.panel:first-child,.history,footer,.preview-toolbar,.no-print{display:none!important}
+ main{max-width:none;padding:0;margin:0}
+ .workspace{display:block}
+ .preview-panel{border:0;box-shadow:none;border-radius:0;overflow:visible}
+ .paper-wrap{padding:0;background:white}
+ .paper{max-width:none;min-height:0;padding:0;box-shadow:none}
+ .quote-table th{background:#0d3547!important;color:white!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .company-logo{background:#087f5b!important;color:white!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .quote-description{background:#f0f8f5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .status-line{border:1px solid #999}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="navbar">
+    <a class="brand" href="dashboard.html"><span class="brand-icon">⚡</span><span>Modern Tech Electrical<small>SOLUTIONS &amp; TECHNOLOGY</small></span></a>
+    <nav aria-label="Main navigation">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="products.html">Products</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="quotations.html" class="active">Quotations</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-heading">
+    <div><div class="eyebrow">Admin workspace</div><h1>Quotation Management</h1><p>Create professional service quotations, review the quotation preview, and print or save an individual quotation as a PDF.</p></div>
+    <div class="admin-badge"><span></span> Quotation desk</div>
+  </div>
+  <div class="notice"><strong></strong></div>
+
+  <div class="workspace">
+    <section class="panel">
+      <h2 class="panel-title">Quotation details</h2>
+      <p class="panel-subtitle">Fill in the customer, service, item costs and terms. The preview updates when you generate the quotation.</p>
+      <form id="quoteForm">
+        <div class="form-grid">
+          <div class="section-label">Business details</div>
+          <div class="field full"><label for="businessName">Business name</label><input id="businessName" value="Modern Tech Electrical Solutions" required></div>
+          <div class="field"><label for="businessPhone">Business phone</label><input id="businessPhone" placeholder="+254 7XX XXX XXX"></div>
+          <div class="field"><label for="businessEmail">Business email</label><input id="businessEmail" type="email" placeholder="yourbusiness@example.com"></div>
+          <div class="field full"><label for="businessAddress">Business address</label><input id="businessAddress" placeholder="Town, county, Kenya"></div>
+
+          <div class="section-label">Customer &amp; quotation</div>
+          <div class="field"><label for="quoteNumber">Quotation number</label><input id="quoteNumber" required></div>
+          <div class="field"><label for="quoteDate">Date issued</label><input id="quoteDate" type="date" required></div>
+          <div class="field"><label for="validUntil">Valid until</label><input id="validUntil" type="date" required></div>
+          <div class="field"><label for="quoteStatus">Approval status</label><select id="quoteStatus"><option>Pending Approval</option><option>Approved</option><option>Draft</option><option>Declined</option></select></div>
+          <div class="field"><label for="customerName">Customer / company</label><input id="customerName" placeholder="Customer's full name" required></div>
+          <div class="field"><label for="customerPhone">Customer phone</label><input id="customerPhone" placeholder="+254..." required></div>
+          <div class="field"><label for="customerEmail">Customer email</label><input id="customerEmail" type="email" placeholder="customer@example.com"></div>
+          <div class="field"><label for="projectLocation">Project location</label><input id="projectLocation" placeholder="Town / site location"></div>
+          <div class="field full"><label for="serviceType">Service category</label><select id="serviceType" required><option value="Electrical Installation">Electrical Installation</option><option value="Repair & Maintenance">Repair &amp; Maintenance</option><option value="Solar & Backup Power">Solar &amp; Backup Power</option></select></div>
+          <div class="field full"><label for="projectDescription">Project description</label><textarea id="projectDescription" placeholder="Describe the work, site conditions or customer requirements..."></textarea></div>
+        </div>
+
+        <div class="items-head"><h3>Quotation items</h3><button type="button" class="small-btn" id="addItem">＋ Add item</button></div>
+        <div class="items-caption"><span>Description</span><span>Qty</span><span>Unit price (KSh)</span><span></span></div>
+        <div class="items-wrap" id="itemsWrap"></div>
+
+        <div class="form-grid" style="margin-top:18px">
+          <div class="field"><label for="discount">Discount (KSh)</label><input id="discount" type="number" min="0" step="0.01" value="0"></div>
+          <div class="field"><label for="taxRate">Tax / VAT (%)</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0"><span class="field-hint">Enter the applicable rate, if any.</span></div>
+          <div class="field full"><label for="terms">Terms &amp; conditions</label><textarea id="terms">Quotation validity is stated above. Work scheduling is subject to customer acceptance and confirmation. Any additional work outside the listed scope may be quoted separately. Electrical work should be performed by qualified personnel.</textarea></div>
+          <div class="field full"><label for="preparedBy">Prepared by</label><input id="preparedBy" placeholder="Admin / estimator name"></div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">↻ Generate / Update Preview</button>
+          <button type="button" class="btn btn-secondary" id="saveQuote">▣ Save quotation</button>
+          <button type="reset" class="btn btn-danger" id="resetForm">Clear form</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel preview-panel" id="previewArea">
+      <div class="preview-toolbar">
+        <div><h2>Quotation preview</h2><p>Review the details before printing or saving as PDF.</p></div>
+        <div class="preview-actions no-print">
+          <button type="button" class="btn btn-dark" id="printQuote">⤓ Print / Save PDF</button>
+          <button type="button" class="btn btn-secondary" id="downloadText">↓ Download TXT</button>
+        </div>
+      </div>
+      <div class="paper-wrap">
+        <article class="paper" id="quotationDocument">
+          <div class="quote-top">
+            <div class="company"><div class="company-logo">⚡</div><div><h3 id="pBusinessName">Modern Tech Electrical Solutions</h3><p>ELECTRICAL • ENERGY • TECHNOLOGY</p></div></div>
+            <div class="quote-heading"><h2>QUOTATION</h2><p id="pQuoteNumber">Quote No: MTE-Q-0001</p><p id="pQuoteDate">Date: —</p></div>
+          </div>
+          <div class="quote-meta">
+            <div><h4>Quotation prepared for</h4><p><strong id="pCustomerName">Customer name</strong></p><p id="pCustomerPhone">Phone: —</p><p id="pCustomerEmail">Email: —</p><p id="pProjectLocation">Location: —</p></div>
+            <div><h4>From</h4><p><strong id="pBusinessContact">Modern Tech Electrical Solutions</strong></p><p id="pBusinessPhone">Phone: —</p><p id="pBusinessEmail">Email: —</p><p id="pBusinessAddress">Address: —</p><p id="pValidUntil">Valid until: —</p></div>
+          </div>
+          <div class="quote-description"><strong>Service:</strong> <span id="pServiceType">Electrical Installation</span><br><span id="pDescription">Quotation for the services and items listed below.</span></div>
+          <table class="quote-table">
+            <thead><tr><th>Item / Description</th><th>Qty</th><th>Unit price</th><th>Amount (KSh)</th></tr></thead>
+            <tbody id="pItems"><tr><td>Electrical service</td><td>1</td><td>0.00</td><td>0.00</td></tr></tbody>
+          </table>
+          <div class="totals">
+            <div class="total-row"><span>Subtotal</span><strong id="pSubtotal">KSh 0.00</strong></div>
+            <div class="total-row"><span>Discount</span><strong id="pDiscount">KSh 0.00</strong></div>
+            <div class="total-row"><span>Tax / VAT (<span id="pTaxRate">0</span>%)</span><strong id="pTax">KSh 0.00</strong></div>
+            <div class="total-row grand"><span>Total due</span><strong id="pTotal">KSh 0.00</strong></div>
+          </div>
+          <div class="amount-words"><strong>Amount payable:</strong> <span id="pAmountWords">Kenya shillings zero only (estimate).</span></div>
+          <div class="quote-notes"><h4>Terms &amp; conditions</h4><p id="pTerms">Quotation validity is stated above.</p><p style="margin-top:10px"><strong>Prepared by:</strong> <span id="pPreparedBy">—</span></p></div>
+          <div class="signatures"><div class="signature">Prepared / authorised by</div><div class="signature">Customer acceptance / date</div></div>
+          <div class="status-line" id="pStatus">Pending Approval</div>
+          <div class="footer-note">Thank you for considering Modern Tech Electrical Solutions. Please confirm the scope, amounts and terms before accepting this quotation.</div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel history" id="savedQuotations">
+    <h2 class="panel-title">Saved quotations</h2>
+    <p class="panel-subtitle">Saved quotations on this browser can be reopened, printed or removed below.</p>
+    <div class="history-list" id="historyList"><div class="empty-history">No quotations saved in this browser yet.</div></div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> <strong>Modern Tech Electrical Solutions</strong>. Quotation Management</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const money = value => 'KSh ' + Number(value || 0).toLocaleString('en-KE',{minimumFractionDigits:2,maximumFractionDigits:2});
+const today = new Date();
+const dateISO = date => new Date(date.getTime() - date.getTimezoneOffset()*60000).toISOString().slice(0,10);
+$('year').textContent = today.getFullYear();
+$('quoteDate').value = dateISO(today);
+const validity = new Date(today); validity.setDate(validity.getDate()+14); $('validUntil').value = dateISO(validity);
+$('quoteNumber').value = 'MTE-Q-' + today.getFullYear() + '-' + String(today.getTime()).slice(-5);
+
+function addItem(description='',qty=1,price=0){
+  const row=document.createElement('div'); row.className='item-row';
+  row.innerHTML='<input class="item-description" aria-label="Item description" placeholder="Service or material" required><input class="item-qty" aria-label="Quantity" type="number" min="0.01" step="0.01" value="1" required><input class="item-price" aria-label="Unit price in Kenya shillings" type="number" min="0" step="0.01" value="0" required><button class="remove" type="button" aria-label="Remove item">×</button>';
+  row.querySelector('.item-description').value=description;
+  row.querySelector('.item-qty').value=qty;
+  row.querySelector('.item-price').value=price;
+  row.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{}));
+  row.querySelector('.remove').addEventListener('click',()=>{if($('itemsWrap').children.length>1)row.remove();else{row.querySelector('.item-description').value='';row.querySelector('.item-qty').value=1;row.querySelector('.item-price').value=0;}});
+  $('itemsWrap').appendChild(row);
+}
+addItem('Labour and installation',1,0);
+addItem('Materials and accessories',1,0);
+$('addItem').addEventListener('click',()=>addItem());
+
+function collectData(){
+ const formData=Object.fromEntries(new FormData($('quoteForm')).entries());
+ const ids=['businessName','businessPhone','businessEmail','businessAddress','quoteNumber','quoteDate','validUntil','quoteStatus','customerName','customerPhone','customerEmail','projectLocation','serviceType','projectDescription','discount','taxRate','terms','preparedBy'];
+ const data={}; ids.forEach(id=>data[id]=$(id).value.trim());
+ data.items=[...document.querySelectorAll('.item-row')].map(row=>({
+  description:row.querySelector('.item-description').value.trim(),
+  qty:Number(row.querySelector('.item-qty').value||0),
+  price:Number(row.querySelector('.item-price').value||0)
+ })).filter(item=>item.description);
+ data.subtotal=data.items.reduce((sum,item)=>sum+item.qty*item.price,0);
+ data.discount=Math.max(0,Number(data.discount)||0);
+ data.taxRate=Math.max(0,Math.min(100,Number(data.taxRate)||0));
+ data.discount=Math.min(data.discount,data.subtotal);
+ data.tax=(data.subtotal-data.discount)*data.taxRate/100;
+ data.total=data.subtotal-data.discount+data.tax;
+ return data;
+}
+function prettyDate(value){if(!value)return '—';return new Date(value+'T00:00:00').toLocaleDateString('en-KE',{day:'2-digit',month:'short',year:'numeric'});}
+function amountInWords(amount){
+ // This readable summary avoids pretending to provide a certified accounting conversion.
+ const rounded=Math.round(amount*100)/100;
+ return 'KSh '+rounded.toLocaleString('en-KE',{minimumFractionDigits:2,maximumFractionDigits:2})+' (Kenya shillings; amount shown in figures).';
+}
+function renderQuote(data=collectData()){
+ $('pBusinessName').textContent=data.businessName||'Modern Tech Electrical Solutions';
+ $('pBusinessContact').textContent=data.businessName||'Modern Tech Electrical Solutions';
+ $('pBusinessPhone').textContent='Phone: '+(data.businessPhone||'Not provided');
+ $('pBusinessEmail').textContent='Email: '+(data.businessEmail||'Not provided');
+ $('pBusinessAddress').textContent='Address: '+(data.businessAddress||'Not provided');
+ $('pQuoteNumber').textContent='Quote No: '+(data.quoteNumber||'—');
+ $('pQuoteDate').textContent='Date: '+prettyDate(data.quoteDate);
+ $('pValidUntil').textContent='Valid until: '+prettyDate(data.validUntil);
+ $('pCustomerName').textContent=data.customerName||'Customer name';
+ $('pCustomerPhone').textContent='Phone: '+(data.customerPhone||'—');
+ $('pCustomerEmail').textContent='Email: '+(data.customerEmail||'Not provided');
+ $('pProjectLocation').textContent='Location: '+(data.projectLocation||'Not provided');
+ $('pServiceType').textContent=data.serviceType||'Service not selected';
+ $('pDescription').textContent=data.projectDescription||'Quotation for the services and items listed below.';
+ $('pItems').replaceChildren();
+ const items=data.items?.length?data.items:[{description:'Service / materials',qty:1,price:0}];
+ items.forEach(item=>{
+  const tr=document.createElement('tr');
+  [item.description,String(item.qty),money(item.price),money(item.qty*item.price)].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.appendChild(td);});
+  $('pItems').appendChild(tr);
+ });
+ $('pSubtotal').textContent=money(data.subtotal);
+ $('pDiscount').textContent='− '+money(data.discount);
+ $('pTaxRate').textContent=data.taxRate;
+ $('pTax').textContent=money(data.tax);
+ $('pTotal').textContent=money(data.total);
+ $('pAmountWords').textContent=amountInWords(data.total);
+ $('pTerms').textContent=data.terms||'No additional terms supplied.';
+ $('pPreparedBy').textContent=data.preparedBy||'Not specified';
+ $('pStatus').textContent=data.quoteStatus||'Draft';
+ $('pStatus').className='status-line'+(data.quoteStatus==='Approved'?' approved':'');
+ return data;
+}
+$('quoteForm').addEventListener('submit',event=>{event.preventDefault();const data=renderQuote();showToast('Quotation preview updated. Review it before printing or saving.');});
+function showToast(message){let el=$('toastMsg');if(!el){el=document.createElement('div');el.id='toastMsg';el.style.cssText='position:fixed;right:18px;bottom:18px;z-index:99;background:#102f43;color:white;padding:13px 17px;border-radius:10px;box-shadow:0 8px 28px #071d2b30;font-size:12px;max-width:360px';document.body.appendChild(el);}el.textContent=message;clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.remove(),4000);}
+$('printQuote').addEventListener('click',()=>{renderQuote();window.print();});
+$('downloadText').addEventListener('click',()=>{
+ const d=renderQuote();
+ const lines=[d.businessName,d.businessAddress,d.businessPhone,d.businessEmail,'QUOTATION',`Quotation number: ${d.quoteNumber}`,`Date: ${d.quoteDate}`,`Valid until: ${d.validUntil}`,'',`Customer: ${d.customerName}`,`Phone: ${d.customerPhone}`,`Email: ${d.customerEmail}`,`Location: ${d.projectLocation}`,`Service: ${d.serviceType}`,`Description: ${d.projectDescription}`,'','ITEMS',...d.items.map(i=>`${i.description} | Qty ${i.qty} | Unit ${money(i.price)} | Amount ${money(i.qty*i.price)}`),'',`Subtotal: ${money(d.subtotal)}`,`Discount: ${money(d.discount)}`,`Tax (${d.taxRate}%): ${money(d.tax)}`,`TOTAL: ${money(d.total)}`,'',`Status: ${d.quoteStatus}`,'Terms:',d.terms,`Prepared by: ${d.preparedBy}`];
+ const blob=new Blob([lines.join('\\n')],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(d.quoteNumber||'quotation')+'.txt';a.click();URL.revokeObjectURL(url);
+});
+const STORAGE_KEY='modernTechSavedQuotationsV1';
+function getSaved(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}catch{return []}}
+function setSaved(list){localStorage.setItem(STORAGE_KEY,JSON.stringify(list));}
+$('saveQuote').addEventListener('click',()=>{
+ const d=renderQuote();
+ if(!$('customerName').value.trim()||!$('quoteNumber').value.trim()){showToast('Enter at least a customer name and quotation number before saving.');return;}
+ const list=getSaved();const index=list.findIndex(item=>item.quoteNumber===d.quoteNumber);
+ const record={...d,savedAt:new Date().toISOString()};
+ if(index>=0)list[index]=record;else list.unshift(record);
+ try{setSaved(list);renderHistory();showToast('Quotation saved in this browser.');}
+ catch{showToast('Could not save. Browser storage may be full or disabled.');}
+});
+function renderHistory(){
+ const list=getSaved();const holder=$('historyList');holder.replaceChildren();
+ if(!list.length){const empty=document.createElement('div');empty.className='empty-history';empty.textContent='No quotations saved in this browser yet.';holder.appendChild(empty);return;}
+ list.forEach((item,index)=>{
+  const row=document.createElement('div');row.className='history-row';
+  const info=document.createElement('div');const strong=document.createElement('strong');strong.textContent=(item.quoteNumber||'Quotation')+' · '+(item.customerName||'Customer');
+  const small=document.createElement('small');small.textContent=(item.serviceType||'Service')+' · '+prettyDate(item.quoteDate)+' · '+money(item.total);
+  info.append(strong,small);
+  const actions=document.createElement('div');actions.className='history-actions';
+  const open=document.createElement('button');open.textContent='Open';open.addEventListener('click',()=>loadQuote(item));
+  const print=document.createElement('button');print.textContent='Print / PDF';print.addEventListener('click',()=>{loadQuote(item);setTimeout(()=>window.print(),80);});
+  const del=document.createElement('button');del.textContent='Delete';del.addEventListener('click',()=>{if(confirm('Delete saved quotation '+item.quoteNumber+' from this browser?')){const latest=getSaved();latest.splice(index,1);setSaved(latest);renderHistory();}});
+  actions.append(open,print,del);row.append(info,actions);holder.appendChild(row);
+ });
+}
+function loadQuote(d){
+ const keys=['businessName','businessPhone','businessEmail','businessAddress','quoteNumber','quoteDate','validUntil','quoteStatus','customerName','customerPhone','customerEmail','projectLocation','serviceType','projectDescription','discount','taxRate','terms','preparedBy'];
+ keys.forEach(key=>{if($(key))$(key).value=d[key]??'';});
+ $('itemsWrap').replaceChildren();(d.items?.length?d.items:[{description:'Labour and installation',qty:1,price:0}]).forEach(item=>addItem(item.description,item.qty,item.price));
+ renderQuote(d);window.scrollTo({top:0,behavior:'smooth'});
+}
+$('resetForm').addEventListener('click',()=>setTimeout(()=>{
+ $('itemsWrap').replaceChildren();addItem('Labour and installation',1,0);addItem('Materials and accessories',1,0);
+ $('quoteDate').value=dateISO(new Date());const end=new Date();end.setDate(end.getDate()+14);$('validUntil').value=dateISO(end);
+ $('quoteNumber').value='MTE-Q-'+new Date().getFullYear()+'-'+String(Date.now()).slice(-5);
+ renderQuote();
+},0));
+$('serviceType').addEventListener('change',()=>{
+ const defaults={
+ 'Electrical Installation':[['Labour and installation',1,0],['Cables, fittings and accessories',1,0]],
+ 'Repair & Maintenance':[['Inspection and fault diagnosis',1,0],['Repair labour and parts',1,0]],
+ 'Solar & Backup Power':[['Solar equipment and components',1,0],['Installation and commissioning',1,0]]
+ };
+ $('itemsWrap').replaceChildren();defaults[$('serviceType').value].forEach(item=>addItem(...item));renderQuote();
+});
+renderQuote();renderHistory();
+</script>
+</body>
+</html>

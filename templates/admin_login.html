@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10243a">
+    <title>Admin Login | Modern Tech Electrical Solutions</title>
+
+    <style>
+        :root {
+            --navy: #10243a;
+            --blue: #1769aa;
+            --green: #159767;
+            --gold: #f5b942;
+            --light: #f3f7fb;
+            --text: #26384a;
+            --muted: #728196;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, #208e8150, transparent 35%),
+                linear-gradient(135deg, #0b192a, #123e5c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 580px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px #00000045;
+        }
+
+        .brand-section {
+            padding: 50px 40px;
+            background: linear-gradient(150deg, #10243a, #15526b);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 25px;
+            font-weight: 900;
+            margin-bottom: 35px;
+        }
+
+        .tagline {
+            color: #8ce7bd;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .brand-section h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .brand-section p {
+            color: #d4e4ed;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .features {
+            margin-top: 30px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #edf7fc;
+        }
+
+        .feature-icon {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: #ffffff18;
+            color: #8ce7bd;
+        }
+
+        .brand-footer {
+            margin-top: 35px;
+            color: #b9cfdd;
+            font-size: 12px;
+        }
+
+        .form-section {
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .admin-badge {
+            display: inline-block;
+            width: fit-content;
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: #e5f7ed;
+            color: #137747;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-section h2 {
+            color: var(--navy);
+            font-size: 29px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .message {
+            background: #fff0f0;
+            color: #a32121;
+            border: 1px solid #ffd1d1;
+            border-radius: 9px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .form-group {
+            margin-bottom: 21px;
+        }
+
+        label {
+            display: block;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 9px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dce5ed;
+            border-radius: 11px;
+            outline: none;
+            font-size: 14px;
+            background: #fbfdff;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px #1769aa15;
+            background: white;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            padding-right: 65px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #edf4fa;
+            color: var(--blue);
+            border: none;
+            padding: 7px 9px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .login-button {
+            width: 100%;
+            border: none;
+            border-radius: 11px;
+            padding: 16px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(90deg, var(--blue), var(--green));
+            box-shadow: 0 8px 18px #1769aa25;
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px #1769aa35;
+        }
+
+        .security-note {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            padding: 13px;
+            background: var(--light);
+            border-radius: 10px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 23px;
+            text-decoration: none;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 760px) {
+            .login-container {
+                max-width: 480px;
+                grid-template-columns: 1fr;
+            }
+
+            .brand-section {
+                padding: 30px;
+            }
+
+            .brand-section h1 {
+                font-size: 27px;
+            }
+
+            .logo {
+                margin-bottom: 22px;
+            }
+
+            .brand-footer {
+                margin-top: 25px;
+            }
+
+            .form-section {
+                padding: 35px 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <section class="brand-section">
+        <div>
+            <div class="logo">MT</div>
+
+            <div class="tagline">Administrator portal</div>
+
+            <h1>Modern Tech<br>Electrical Solutions</h1>
+
+            <p>
+                Welcome to your secure management portal. Sign in to manage
+                customer service requests, pending jobs, quotations and
+                electrical service operations.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    View requested electrical services
+                </div>
+
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    Approve or reject service requests
+                </div>
+
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    Track pending and ongoing services
+                </div>
+
+                <div class="feature">
+                    <span class="feature-icon">✓</span>
+                    Manage quotations and completed jobs
+                </div>
+            </div>
+        </div>
+
+        <div class="brand-footer">
+            Reliable Power. Professional Service. Modern Solutions.
+        </div>
+    </section>
+
+
+    <section class="form-section">
+
+        <div class="admin-badge">🔒 SECURE ADMIN ACCESS</div>
+
+        <h2>Admin Login</h2>
+
+        <p class="description">
+            Enter your administrator username and password to access
+            the service management dashboard.
+        </p>
+
+        <!-- Flask flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <!-- This form requires a matching Flask login route -->
+        <form method="POST" action="{{ url_for('admin_login') }}">
+
+            <div class="form-group">
+                <label for="username">Administrator Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter administrator username"
+                    autocomplete="username"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <div class="password-container">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword()"
+                    >
+                        Show
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="login-button">
+                Login to Admin Dashboard →
+            </button>
+
+        </form>
+
+        <div class="security-note">
+            <span>🛡️</span>
+            <span>
+                Administrator access only. Never share your password.
+                Your Flask backend must verify credentials before opening
+                protected dashboard pages.
+            </span>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="home-link">
+            ← Return to Home Page
+        </a>
+
+    </section>
+
+</div>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const button = document.querySelector(".show-password");
+
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "Hide";
+    } else {
+        password.type = "password";
+        button.textContent = "Show";
+    }
+}
+</script>
+
+</body>
+</html>

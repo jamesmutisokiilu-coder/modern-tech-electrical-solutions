@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#073b35">
+<title>Products | Modern Tech Electrical Solutions</title>
+<style>
+:root{--green:#087f5b;--green-dark:#064e3b;--navy:#102a43;--blue:#1769aa;--gold:#f4b942;--bg:#f4f8fb;--white:#fff;--text:#183044;--muted:#637789;--border:#dce6ed;--shadow:0 12px 32px rgba(16,42,67,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+.topbar{background:#052e2b;color:#e8f7f2;font-size:.87rem;padding:8px 5%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 3px 18px rgba(16,42,67,.08)}.navbar{max-width:1250px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--navy);font-size:1.02rem}.logo{width:45px;height:45px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,var(--green),var(--blue));font-size:1.4rem}.brand small{display:block;color:var(--muted);font-weight:600;font-size:.7rem;letter-spacing:.3px}.navlinks{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.navlinks a{padding:10px 12px;border-radius:9px;color:#334e62;font-weight:700;font-size:.92rem}.navlinks a:hover,.navlinks a.active{background:#e8f5ef;color:var(--green-dark)}.menu-toggle{display:none;border:1px solid var(--border);background:#fff;border-radius:9px;padding:8px 12px;color:var(--navy);font-weight:800}
+.btn{border:0;border-radius:10px;background:var(--green);color:white;padding:11px 15px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.2s}.btn:hover{background:var(--green-dark);transform:translateY(-1px)}.btn-outline{border:1px solid var(--border);border-radius:10px;background:white;color:var(--navy);padding:10px 14px;font-weight:800}.cart-button{position:relative;background:var(--green);color:white;border:0;border-radius:11px;padding:11px 15px;font-weight:800;white-space:nowrap}.cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:50%;background:var(--gold);color:#17324a;margin-left:4px;font-size:.78rem}
+.hero{color:white;padding:55px 24px;background:radial-gradient(circle at 86% 20%,rgba(59,178,155,.3),transparent 28%),linear-gradient(120deg,#062f35,#075b53 55%,#155d91)}.hero-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:30px}.hero h1{font-size:clamp(2rem,4.5vw,3.3rem);line-height:1.12;letter-spacing:-1px;margin:0 0 13px}.hero p{max-width:690px;color:#e0f3f0;margin:0 0 20px;font-size:1.03rem}.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.09);padding:6px 11px;border-radius:30px;font-size:.83rem;font-weight:700;margin-bottom:15px}.hero-note{max-width:290px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.09);padding:20px;border-radius:16px}.hero-note strong{display:block;margin-bottom:5px}
+.container{max-width:1250px;margin:auto;padding:38px 24px 55px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:22px}.section-head h2{color:var(--navy);font-size:1.9rem;margin:0 0 5px}.section-head p{color:var(--muted);margin:0}.tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}.search{flex:1;min-width:220px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:#fff;outline:none}.search:focus,.field:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(8,127,91,.12)}.category{min-width:190px;padding:12px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text)}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}.product-card{background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 5px 18px rgba(16,42,67,.04);transition:.2s}.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.product-art{height:150px;display:grid;place-items:center;background:linear-gradient(145deg,#e8f5ef,#eaf2fb);font-size:4.1rem;position:relative}.product-badge{position:absolute;top:12px;left:12px;background:#fff;border:1px solid var(--border);color:var(--green-dark);padding:4px 8px;border-radius:30px;font-size:.73rem;font-weight:800}.product-info{padding:17px;display:flex;flex-direction:column;flex:1}.product-category{font-size:.75rem;color:var(--green);text-transform:uppercase;letter-spacing:.7px;font-weight:800}.product-info h3{color:var(--navy);font-size:1.04rem;line-height:1.35;margin:5px 0 7px}.product-info p{font-size:.87rem;color:var(--muted);margin:0 0 14px;flex:1}.product-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:13px}.price{font-weight:900;color:var(--green-dark);font-size:1.16rem}.product-bottom small{font-size:.72rem;color:var(--muted)}.add-btn{width:100%}.empty{display:none;padding:30px;background:white;border:1px dashed var(--border);border-radius:13px;text-align:center;color:var(--muted)}
+.notice{margin-top:23px;padding:14px 16px;background:#fff8e7;border:1px solid #f4dfaa;border-radius:11px;color:#745216;font-size:.9rem}
+footer{background:#071f2e;color:#d4e2ea;padding:30px 24px}.footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap}.footer-inner p{margin:6px 0;color:#a8bfcc;font-size:.9rem}.footer-links{display:flex;gap:15px;flex-wrap:wrap;align-items:center}
+.overlay{position:fixed;inset:0;background:rgba(4,20,31,.72);z-index:50;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}.overlay.open{display:flex}.dialog{width:min(780px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:17px;box-shadow:0 25px 80px rgba(0,0,0,.3)}.dialog-head{position:sticky;top:0;z-index:2;background:white;padding:19px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:15px}.dialog-head h2{margin:0;color:var(--navy);font-size:1.35rem}.dialog-head p{margin:3px 0 0;color:var(--muted);font-size:.87rem}.close{border:0;background:#edf2f5;border-radius:9px;width:38px;height:38px;font-size:1.35rem;color:var(--navy)}.dialog-body{padding:20px 22px}.cart-empty{text-align:center;padding:35px 10px;color:var(--muted)}.cart-list{display:flex;flex-direction:column;gap:12px}.cart-row{display:grid;grid-template-columns:55px 1fr auto;gap:12px;align-items:center;border:1px solid var(--border);border-radius:12px;padding:12px}.cart-emoji{width:52px;height:52px;border-radius:10px;background:#eaf5f1;display:grid;place-items:center;font-size:1.8rem}.cart-row h4{margin:0;color:var(--navy);font-size:.95rem}.cart-row small{color:var(--muted)}.quantity{display:flex;align-items:center;gap:7px;margin-top:5px}.quantity button{width:26px;height:26px;border:1px solid var(--border);border-radius:7px;background:#fff;font-weight:800}.remove{border:0;background:transparent;color:#b42318;font-size:.83rem;margin-top:4px;padding:0}.cart-total{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--border);padding-top:15px;margin-top:16px;font-size:1.12rem;font-weight:900;color:var(--navy)}.cart-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:17px}.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field-wrap{display:flex;flex-direction:column;gap:6px}.field-wrap.full{grid-column:1/-1}.field-wrap label{font-size:.88rem;font-weight:800;color:#294458}.field{width:100%;border:1px solid #cfdae3;border-radius:9px;padding:11px 12px;outline:none;background:white;color:var(--text)}textarea.field{min-height:80px;resize:vertical}.payment-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.payment-option{display:block;border:1px solid var(--border);border-radius:10px;padding:12px;cursor:pointer}.payment-option input{margin-right:5px;accent-color:var(--green)}.payment-option span{display:block;font-size:.82rem;color:var(--muted);margin:5px 0 0 22px}.order-summary{background:#f3f8f6;border:1px solid #d8eae2;padding:13px;border-radius:10px;margin:17px 0}.order-summary div{display:flex;justify-content:space-between;gap:10px}.message{display:none;margin-top:14px;padding:14px;border-radius:10px;white-space:pre-wrap;font-size:.9rem}.message.success{display:block;background:#edfff4;border:1px solid #b9e5ce;color:#14532d}.message.error{display:block;background:#fff0f0;border:1px solid #f0c6c6;color:#8c1d18}.muted{color:var(--muted);font-size:.83rem}
+@media(max-width:1000px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-note{max-width:250px}}
+@media(max-width:760px){.menu-toggle{display:block}.navbar{flex-wrap:wrap}.navlinks{display:none;width:100%;flex-direction:column;align-items:stretch;padding-top:10px}.navlinks.open{display:flex}.navlinks a{width:100%;text-align:center}.hero-inner{align-items:flex-start;flex-direction:column}.hero-note{max-width:100%}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.container{padding:30px 17px 42px}}
+@media(max-width:520px){.product-grid{grid-template-columns:1fr}.product-art{height:135px}.topbar{justify-content:center;text-align:center}.checkout-grid{grid-template-columns:1fr}.field-wrap.full{grid-column:auto}.payment-options{grid-template-columns:1fr}.cart-row{grid-template-columns:45px 1fr auto;padding:9px}.cart-emoji{width:43px;height:43px}.dialog-body,.dialog-head{padding:16px}.section-head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>⚡ Modern Tech Electrical Solutions</span><span>Electrical • Solar • Lighting • Accessories</span></div>
+<header>
+<nav class="navbar" aria-label="Main navigation">
+<a class="brand" href="index.html"><span class="logo">⚡</span><span>MODERN TECH<small>ELECTRICAL SOLUTIONS</small></span></a>
+<button class="menu-toggle" id="menuToggle" aria-expanded="false">☰ Menu</button>
+<div class="navlinks" id="navLinks"><a href="index.html">Home</a><a href="services.html">Services</a><a class="active" href="products.html">Products</a><a href="quotations.html">Quotations</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
+<button class="cart-button" id="openCart" type="button">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+</nav>
+</header>
+
+<section class="hero"><div class="hero-inner">
+<div><span class="eyebrow">Electrical Products & Accessories</span><h1>Find the right products for your next project.</h1><p>Browse a starter catalogue of common electrical accessories. Add the products you need to your cart, review quantities and submit an order request at checkout.</p><button class="btn" style="background:#f4b942;color:#17324a" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Shop Products ↓</button></div>
+<div class="hero-note"><strong>🛍️ Simple ordering</strong><span>1. Add products to your cart<br>2. Check quantities and total<br>3. Enter your delivery details<br>4. Choose a preferred payment method</span></div>
+</div></section>
+
+<main class="container" id="catalogue">
+<div class="section-head"><div><h2>Our Products</h2><p>Prices below are illustrative examples in Kenya shillings (KSh). Confirm current prices and availability before ordering.</p></div><button class="btn-outline" type="button" id="openCart2">🛒 View Cart</button></div>
+<div class="tools"><input class="search" id="search" type="search" placeholder="Search products, e.g. cable, LED, breaker..." aria-label="Search products"><select class="category" id="category" aria-label="Filter by product category"><option value="all">All categories</option><option value="cables">Cables & Wiring</option><option value="lighting">Lighting</option><option value="protection">Protection & Switchgear</option><option value="accessories">Accessories</option><option value="solar">Solar & Backup</option></select></div>
+<div class="product-grid" id="productGrid">
+<article class="product-card" data-id="cable-25" data-name="2.5mm Electrical Cable (per metre)" data-price="95" data-category="cables" data-emoji="🧵" data-description="General-purpose electrical cable; confirm conductor size, colour and required length."><div class="product-art"><span class="product-badge">Popular</span>🧵</div><div class="product-info"><span class="product-category">Cables & Wiring</span><h3>2.5mm Electrical Cable</h3><p>General-purpose cable for suitable wiring applications. Sold per metre; specify the length required.</p><div class="product-bottom"><span class="price">KSh 95</span><small>per metre · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="led-bulb" data-name="LED Bulb 9W" data-price="180" data-category="lighting" data-emoji="💡" data-description="Energy-saving LED bulb; confirm cap type and colour temperature."><div class="product-art"><span class="product-badge">Energy saving</span>💡</div><div class="product-info"><span class="product-category">Lighting</span><h3>LED Bulb 9W</h3><p>LED lighting for compatible fittings in homes, shops and offices.</p><div class="product-bottom"><span class="price">KSh 180</span><small>per bulb · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="socket" data-name="13A Twin Socket Outlet" data-price="650" data-category="accessories" data-emoji="🔌" data-description="Twin socket outlet; select a product suitable for the installation and local standards."><div class="product-art">🔌</div><div class="product-info"><span class="product-category">Accessories</span><h3>13A Twin Socket Outlet</h3><p>Socket outlet for compatible electrical installations.</p><div class="product-bottom"><span class="price">KSh 650</span><small>each · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="mcb-20" data-name="20A Miniature Circuit Breaker" data-price="480" data-category="protection" data-emoji="⚡" data-description="Circuit protection device; rating and breaking capacity must match the installation design."><div class="product-art">⚡</div><div class="product-info"><span class="product-category">Protection & Switchgear</span><h3>20A Circuit Breaker</h3><p>Miniature circuit breaker. Correct rating must be selected for the circuit.</p><div class="product-bottom"><span class="price">KSh 480</span><small>each · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="extension" data-name="4-Way Extension Socket" data-price="950" data-category="accessories" data-emoji="🔋" data-description="Multi-outlet extension socket for suitable indoor use; check its current rating."><div class="product-art">🔋</div><div class="product-info"><span class="product-category">Accessories</span><h3>4-Way Extension Socket</h3><p>Convenient multi-outlet extension for compatible equipment and loads.</p><div class="product-bottom"><span class="price">KSh 950</span><small>each · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="solar-light" data-name="Solar Security Light" data-price="2800" data-category="solar" data-emoji="☀️" data-description="Solar security light; confirm brightness, battery capacity and mounting accessories."><div class="product-art"><span class="product-badge">Solar</span>☀️</div><div class="product-info"><span class="product-category">Solar & Backup</span><h3>Solar Security Light</h3><p>Solar-powered outdoor lighting option for suitable locations.</p><div class="product-bottom"><span class="price">KSh 2,800</span><small>each · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="led-flood" data-name="LED Floodlight 50W" data-price="1600" data-category="lighting" data-emoji="🔦" data-description="Outdoor LED floodlight; confirm IP rating and installation requirements."><div class="product-art">🔦</div><div class="product-info"><span class="product-category">Lighting</span><h3>LED Floodlight 50W</h3><p>Outdoor lighting option for yards, entrances and suitable work areas.</p><div class="product-bottom"><span class="price">KSh 1,600</span><small>each · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+<article class="product-card" data-id="surge" data-name="Surge Protection Device" data-price="2200" data-category="protection" data-emoji="🛡️" data-description="Surge-protection device; selection depends on the electrical system and design."><div class="product-art">🛡️</div><div class="product-info"><span class="product-category">Protection & Switchgear</span><h3>Surge Protection Device</h3><p>Helps protect compatible electrical equipment against certain transient surges.</p><div class="product-bottom"><span class="price">KSh 2,200</span><small>each · example</small></div><button class="btn add-btn">＋ Add to Cart</button></div></article>
+</div>
+<div class="empty" id="emptyState">No products match your search. Try another term or category.</div>
+<div class="notice"><strong>Note:</strong> These are sample products and illustrative prices for the page demonstration, not a live stock or price feed. Product availability, specifications, delivery fees and final prices should be confirmed by the business.</div>
+</main>
+
+<footer><div class="footer-inner"><div><strong>MODERN TECH ELECTRICAL SOLUTIONS</strong><p>Electrical • Solar • Maintenance • Supplies</p><small>© <span id="year"></span> Modern Tech Electrical Solutions. All rights reserved.</small></div><div class="footer-links"><a href="services.html">Services</a><a href="quotations.html">Quotations</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div></div></footer>
+
+<div class="overlay" id="cartOverlay" role="dialog" aria-modal="true" aria-labelledby="cartTitle"><div class="dialog"><div class="dialog-head"><div><h2 id="cartTitle">Your Shopping Cart</h2><p>Review products and quantities before checkout.</p></div><button class="close" type="button" data-close="cartOverlay" aria-label="Close cart">×</button></div><div class="dialog-body"><div id="cartContents"></div><div class="cart-actions"><button class="btn-outline" type="button" data-close="cartOverlay">Continue Shopping</button><button class="btn" id="checkoutBtn" type="button">Proceed to Checkout →</button></div></div></div></div>
+
+<div class="overlay" id="checkoutOverlay" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><div class="dialog"><div class="dialog-head"><div><h2 id="checkoutTitle">Checkout & Payment Preference</h2><p>Provide your contact and delivery details to submit an order request.</p></div><button class="close" type="button" data-close="checkoutOverlay" aria-label="Close checkout">×</button></div><div class="dialog-body">
+<form id="checkoutForm">
+<div class="checkout-grid">
+<div class="field-wrap"><label for="buyerName">Full name *</label><input class="field" id="buyerName" name="name" autocomplete="name" required maxlength="100" placeholder="Your full name"></div>
+<div class="field-wrap"><label for="buyerPhone">Phone number *</label><input class="field" id="buyerPhone" name="phone" type="tel" autocomplete="tel" required maxlength="20" placeholder="e.g. 07XXXXXXXX"></div>
+<div class="field-wrap"><label for="buyerEmail">Email address</label><input class="field" id="buyerEmail" name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@example.com"></div>
+<div class="field-wrap"><label for="deliveryLocation">Delivery / collection location *</label><input class="field" id="deliveryLocation" name="location" required maxlength="180" placeholder="Town, estate or collection point"></div>
+<div class="field-wrap full"><label>Preferred payment method *</label><div class="payment-options">
+<label class="payment-option"><input type="radio" name="payment_method" value="M-Pesa" required> <strong>M-Pesa</strong><span>Mobile money payment</span></label>
+<label class="payment-option"><input type="radio" name="payment_method" value="Card"> <strong>Bank card</strong><span>Visa / Mastercard</span></label>
+<label class="payment-option"><input type="radio" name="payment_method" value="Pay on collection"> <strong>Pay on collection</strong><span>Confirm with the seller</span></label>
+</div></div>
+<div class="field-wrap full"><label for="orderNotes">Order notes (optional)</label><textarea class="field" id="orderNotes" name="notes" maxlength="1000" placeholder="Delivery instructions or product specification questions"></textarea></div>
+</div>
+<div class="order-summary" id="checkoutSummary"></div>
+<p class="muted">This demo does not charge money or initiate an M-Pesa STK Push/card transaction. The selected payment method is a preference only. Live payments require a secure server-side integration and payment-provider confirmation.</p>
+<div class="cart-actions"><button class="btn-outline" type="button" id="backToCart">← Back to Cart</button><button class="btn" type="submit">Submit Order Request ↗</button></div>
+<div id="checkoutMessage" class="message" role="status"></div>
+</form></div></div></div>
+
+<script>
+const cart = new Map();
+const products = new Map();
+document.querySelectorAll('.product-card').forEach(card => {
+  const p = {id:card.dataset.id,name:card.dataset.name,price:Number(card.dataset.price),category:card.dataset.category,emoji:card.dataset.emoji || card.querySelector('.product-art').textContent.trim().slice(-2),description:card.dataset.description || ''};
+  products.set(p.id,p);
+  card.querySelector('.add-btn').addEventListener('click',()=>addToCart(p.id));
+});
+const cartCount=document.getElementById('cartCount');
+const cartOverlay=document.getElementById('cartOverlay');
+const checkoutOverlay=document.getElementById('checkoutOverlay');
+const cartContents=document.getElementById('cartContents');
+const checkoutBtn=document.getElementById('checkoutBtn');
+const checkoutMessage=document.getElementById('checkoutMessage');
+function money(value){return 'KSh '+Number(value).toLocaleString('en-KE',{maximumFractionDigits:2});}
+function addToCart(id){cart.set(id,(cart.get(id)||0)+1);renderCart();const btn=document.querySelector(`[data-id="${id}"] .add-btn`);if(btn){const old=btn.textContent;btn.textContent='✓ Added';setTimeout(()=>btn.textContent=old,900);}}
+function changeQty(id,delta){const next=(cart.get(id)||0)+delta;if(next<=0)cart.delete(id);else cart.set(id,next);renderCart();}
+function removeItem(id){cart.delete(id);renderCart();}
+function totalItems(){let n=0;cart.forEach(q=>n+=q);return n;}
+function cartTotal(){let total=0;cart.forEach((q,id)=>total+=products.get(id).price*q);return total;}
+function renderCart(){
+ cartCount.textContent=totalItems();
+ if(!cart.size){cartContents.innerHTML='<div class="cart-empty"><div style="font-size:2.5rem">🛒</div><strong>Your cart is empty</strong><p>Add a few products from the catalogue to get started.</p><button class="btn" type="button" data-empty-shop>Browse Products</button></div>';cartContents.querySelector('[data-empty-shop]').addEventListener('click',()=>closeOverlay('cartOverlay'));checkoutBtn.disabled=true;checkoutBtn.style.opacity='.55';}
+ else{
+  checkoutBtn.disabled=false;checkoutBtn.style.opacity='1';
+  const rows=Array.from(cart.entries()).map(([id,qty])=>{const p=products.get(id);return `<div class="cart-row"><div class="cart-emoji">${p.emoji}</div><div><h4>${escapeHtml(p.name)}</h4><small>${money(p.price)} each · ${money(p.price*qty)}</small><div class="quantity"><button type="button" aria-label="Decrease quantity" data-minus="${id}">−</button><strong>${qty}</strong><button type="button" aria-label="Increase quantity" data-plus="${id}">+</button></div></div><div><strong>${money(p.price*qty)}</strong><br><button class="remove" type="button" data-remove="${id}">Remove</button></div></div>`}).join('');
+  cartContents.innerHTML=`<div class="cart-list">${rows}</div><div class="cart-total"><span>Estimated subtotal</span><span>${money(cartTotal())}</span></div><p class="muted">Delivery and any additional charges are not included. Final price will be confirmed.</p>`;
+  cartContents.querySelectorAll('[data-minus]').forEach(b=>b.addEventListener('click',()=>changeQty(b.dataset.minus,-1)));
+  cartContents.querySelectorAll('[data-plus]').forEach(b=>b.addEventListener('click',()=>changeQty(b.dataset.plus,1)));
+  cartContents.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>removeItem(b.dataset.remove)));
+ }
+}
+function escapeHtml(str){return String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function openOverlay(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeOverlay(id){document.getElementById(id).classList.remove('open');if(!document.querySelector('.overlay.open'))document.body.style.overflow='';}
+document.getElementById('openCart').addEventListener('click',()=>{renderCart();openOverlay('cartOverlay')});
+document.getElementById('openCart2').addEventListener('click',()=>{renderCart();openOverlay('cartOverlay')});
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeOverlay(b.dataset.close)));
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeOverlay(o.id)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.overlay.open').forEach(o=>closeOverlay(o.id));});
+checkoutBtn.addEventListener('click',()=>{
+ if(!cart.size)return;
+ document.getElementById('checkoutSummary').innerHTML=`<div><span>Items (${totalItems()})</span><strong>${money(cartTotal())}</strong></div><div style="margin-top:5px;font-size:.82rem;color:#637789"><span>Delivery</span><span>To be confirmed</span></div>`;
+ checkoutMessage.className='message';checkoutMessage.textContent='';
+ closeOverlay('cartOverlay');openOverlay('checkoutOverlay');
+});
+document.getElementById('backToCart').addEventListener('click',()=>{closeOverlay('checkoutOverlay');renderCart();openOverlay('cartOverlay')});
+document.getElementById('checkoutForm').addEventListener('submit',e=>{
+ e.preventDefault();if(!cart.size){checkoutMessage.className='message error';checkoutMessage.textContent='Your cart is empty.';return;}
+ const form=e.currentTarget;if(!form.reportValidity())return;
+ const order={reference:'MTE-ORD-'+Date.now().toString().slice(-7),created_at:new Date().toISOString(),customer:Object.fromEntries(new FormData(form).entries()),items:Array.from(cart.entries()).map(([id,qty])=>({product:products.get(id).name,quantity:qty,unit_price:products.get(id).price,line_total:products.get(id).price*qty})),subtotal:cartTotal()};
+ const saved=JSON.parse(sessionStorage.getItem('mtes_demo_orders')||'[]');saved.push(order);sessionStorage.setItem('mtes_demo_orders',JSON.stringify(saved));
+ checkoutMessage.className='message success';
+ checkoutMessage.textContent=`Order request prepared successfully in this browser session.\\nReference: ${order.reference}\\nSubtotal: ${money(order.subtotal)}\\nPayment preference: ${order.customer.payment_method}\\n\\nNo payment has been taken and the company has not received this order. Connect this checkout to a Flask backend and a payment provider to receive orders and process real payments.`;
+ checkoutMessage.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+const search=document.getElementById('search'),category=document.getElementById('category');
+function filterProducts(){const term=search.value.trim().toLowerCase(),cat=category.value;let shown=0;document.querySelectorAll('.product-card').forEach(card=>{const okText=(card.innerText+' '+card.dataset.search+' '+card.dataset.name).toLowerCase().includes(term);const okCat=cat==='all'||card.dataset.category===cat;card.style.display=okText&&okCat?'flex':'none';if(okText&&okCat)shown++;});document.getElementById('emptyState').style.display=shown?'none':'block';}
+search.addEventListener('input',filterProducts);category.addEventListener('change',filterProducts);
+document.getElementById('year').textContent=new Date().getFullYear();
+const menuToggle=document.getElementById('menuToggle'),navLinks=document.getElementById('navLinks');
+menuToggle.addEventListener('click',()=>{const isOpen=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(isOpen));});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');}));
+renderCart();
+</script>
+</body>
+</html>
