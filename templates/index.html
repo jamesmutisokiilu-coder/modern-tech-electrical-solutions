@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modern Tech Electrical Solutions</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #e8fff3, #e4f0ff);
+            color: #123456;
+        }
+
+        nav {
+            background: #087f5b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px #12345620;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #0866c6;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-btn {
+            display: inline-block;
+            background: #087f5b;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .dashboard-btn:hover {
+            background: #0866c6;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: #073763;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 25px;
+            }
+
+            .welcome {
+                padding: 35px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        Modern Tech Electrical Solutions
+    </nav>
+
+    <main>
+        <div class="welcome">
+            <h1>Welcome to Modern Tech Electrical Solutions</h1>
+
+            <p>
+                Powering your future with reliable electrical
+                services and innovative technology solutions.
+            </p>
+            
+
+               <a href="/dashboard" class="dashboard-btn">
+                Go to Dashboard →
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> Modern Tech Electrical Solutions.
+        All Rights Reserved.
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
 
