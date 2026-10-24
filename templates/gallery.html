@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work Gallery | Modern Tech Electrical Solutions</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            color: #183044;
+        }
+        
+        header {
+            background: #064e3b;
+            color: white;
+            padding: 25px 5%;
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px #00000010;
+        }
+        
+        .gallery-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .gallery-card h3 {
+            margin-bottom: 5px;
+        }
+        
+        .gallery-card p {
+            color: #637789;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 11px 16px;
+            background: #087f5b;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>MODERN TECH ELECTRICAL SOLUTIONS</h1>
+        <p>Our Work Gallery</p>
+    </header>
+
+    <main>
+        <a class="back-link" href="{{ url_for('services') }}">
+        ← Back to Services
+    </a>
+
+        <h2>Explore Our Work</h2>
+        <p>Discover our electrical, solar and energy solutions.</p>
+
+        <div class="gallery">
+            <article class="gallery-card">
+                <img src="{{ url_for('static', filename='images/electrical-installation.jpg') }}" alt="Electrical installation">
+                <h3>Electrical Installation</h3>
+                <p>Wiring and electrical installations.</p>
+            </article>
+
+            <article class="gallery-card">
+                <img src="{{ url_for('static', filename='images/solar-installation.jpg') }}" alt="Solar installation">
+                <h3>Solar Installation</h3>
+                <p>Solar energy and backup power systems.</p>
+            </article>
+
+            <article class="gallery-card">
+                <img src="{{ url_for('static', filename='images/lighting-installation.jpg') }}" alt="Lighting installation">
+                <h3>Lighting Systems</h3>
+                <p>Indoor and outdoor lighting solutions.</p>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>
