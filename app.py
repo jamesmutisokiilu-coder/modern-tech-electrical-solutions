@@ -237,6 +237,14 @@ def admin_required(function):
     return decorated_function
 
 
+
+
+@app.route("/gallery")
+def gallery():
+    return render_template("gallery.html")
+
+
+
 # ============================================================
 # HOME PAGE
 # ============================================================
